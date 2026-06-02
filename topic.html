@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Topic - Bologna Urban POI Knowledge Graph</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- COMPACT HEADER ANIMAT-->
+    <header class="compact-header header-topic">
+        <div class="compact-header-content">
+            <h1>Bologna Urban Points of Interest</h1>
+            <p>Knowledge Graph Enrichment with LLMs</p>
+        </div>
+    </header>
+
+    <!-- NAVIGATION: The exact same menu for seamless navigation -->
+    <nav id="main-menu" class="navigation-bar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="topic.html">Project Topic</a></li>
+            <li><a href="methodology.html">Methodology</a></li>
+            <li><a href="ontology.html">Ontology Extension</a></li>
+            <!-- AICI ÎNCEPE GRUPAREA (DROPDOWN) -->
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Technical Details ▾</a>
+                <div class="dropdown-content">
+                    <a href="sparql.html">SPARQL Queries</a>
+                    <a href="llm.html">LLM Experiments</a>
+                    <a href="rdf.html">RDF Triples</a>
+                </div>
+            </li>
+            <!-- AICI SE TERMINĂ GRUPAREA 
+            <li><a href="sparql.html">SPARQL Queries</a></li>
+            <li><a href="llm.html">LLM Experiments</a></li>
+            <li><a href="rdf.html">RDF Triples</a></li> -->
+            <li><a href="results.html">Results</a></li>
+            <li><a href="challenges.html">Challenges</a></li>
+        </ul>
+    </nav>
+
+    <!-- MAIN CONTENT: The core information for the Project Topic page -->
+    <main id="topic-content" class="container">
+        
+        <section id="topic-intro" class="content-section">
+            <h2>Project Topic & Gap Analysis</h2>
+            
+            <h3>Esplorazione di POI-AP_IT tramite SPARQL</h3>
+            <p>La prima fase ha riguardato l'esplorazione sistematica dell'ontologia nazionale dei Punti di Interesse (POI-AP_IT), esposta con IRI <a href="https://w3id.org/italia/onto/POI" target="_blank">https://w3id.org/italia/onto/POI</a> e interrogabile tramite l'endpoint SPARQL <a href="https://schema.gov.it/sparql" target="_blank">https://schema.gov.it/sparql</a>.</p>
+            <p>L'obiettivo era comprendere la struttura complessiva dell'ontologia, identificare le principali classi e proprietà disponibili e valutarne la capacità di rappresentare i punti di interesse urbani rilevanti per il caso d'uso bolognese. L'esplorazione è stata avviata tramite query generiche su triple soggetto-predicato-oggetto, filtrando le risorse il cui IRI appartiene allo spazio dei nomi di POI-AP_IT, al fine di ottenere una panoramica delle entità effettivamente modellate.</p>
+            <p>A seguire, sono state formulate query specifiche per elencare le classi (<code>owl:Class</code>) e le proprietà (<code>owl:ObjectProperty</code>, <code>owl:DatatypeProperty</code>), recuperandone etichette, commenti, domini e codomini, così da individuare concetti e relazioni potenzialmente riutilizzabili per il progetto.</p>
+            <p>Infine, è stata eseguita una query mirata per verificare l'eventuale presenza di concetti già pertinenti alla città di Bologna e ai servizi urbani di interesse (fermate TPER, panchine, bagni pubblici, parcheggi, portici, arredo urbano), utilizzando filtri basati su <strong>REGEX</strong> applicati a IRI, etichette, commenti e descrizioni. L'analisi dei risultati ha mostrato che POI-AP_IT offre un modello semantico generale per i punti di interesse e alcune proprietà correlate, ma non copre in modo esplicito diverse categorie urbane specifiche del contesto bolognese, facendo emergere così un gap da colmare.</p>
+
+            <!-- PARTEA 2 (Cu butonul Colab adăugat) -->
+            <h3 style="margin-top: 40px;">Preprocessing e normalizzazione dei dati comunali</h3>
+            <p>Parallelamente all'esplorazione ontologica, è stata avviata una fase di preprocessing dei dati provenienti dal portale Open Data del Comune di Bologna, con particolare attenzione ai dataset relativi ad arredo urbano, bagni pubblici, fermate autobus TPER, parcheggi e portici. I dataset originali risultavano eterogenei sia dal punto di vista strutturale (diverse intestazioni di colonna, formati, convenzioni) sia lessicale (categorie e descrizioni non uniformi), rendendo necessaria una normalizzazione preliminare prima di procedere all'integrazione semantica.</p>
+            <p>Le operazioni di preprocessing sono state effettuate in ambiente Python (Google Colab) e hanno riguardato, in particolare, la pulizia dei valori mancanti o anomali, l'armonizzazione dei nomi delle colonne, la standardizzazione dei formati (ad esempio per date e coordinate) e l'allineamento delle categorie descrittive tra i diversi dataset.</p>            <!-- BUTON GOOGLE COLAB -->
+            <p style="text-align: center; margin: 30px 0;">
+                <a href="https://colab.research.google.com/drive/127wOWS2QX1ij1y0qJgyMleJomBS7AdC3?usp=sharing" target="_blank" class="action-button">
+                    Google Colab – Preprocessing e integrazione dei dataset ↗
+                </a>
+            </p>
+            <p>Il risultato di questa fase è stato un unico file CSV con dati integrati e coerenti, pronto per essere mappato sulle strutture ontologiche individuate.</p>
+
+            <h3 style="margin-top: 40px;">Analisi del gap semantico</h3>
+            <p>Sulla base delle informazioni emerse dall'esplorazione di POI-AP_IT e dall'analisi dei dataset comunali è stata condotta una <em>gap analysis</em> volta a identificare i concetti che il modello nazionale non copriva in modo soddisfacente. In particolare, è emersa l'assenza di classi e categorie specifiche per la rappresentazione di servizi e infrastrutture urbane tipiche del contesto bolognese, quali le fermate TPER, l'arredo urbano di dettaglio (panchine, cestini, fontane), i bagni pubblici, le aree di parcheggio e, in particolare, i portici.</p>
+            <p>Questa analisi ha portato alla definizione di requisiti per un'estensione ontologica locale che fosse compatibile con POI-AP_IT, ma in grado di modellare in maniera più articolata le categorie presenti nei dataset comunali. L'obiettivo era introdurre nuove classi e proprietà soltanto quando strettamente necessario, privilegiando il riuso di elementi preesistenti laddove questi risultassero adeguati alla rappresentazione dei dati.</p>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER MODERN ȘI COMPLET -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-info">
+                <h3>Knowledge Graph Enrichment with LLMs</h3>
+                <p><strong>Corso:</strong> Metodi Semantici per la Trasformazione Digitale</p>
+                <p><strong>Anno Accademico:</strong> 2025/2026</p>
+                <p class="team-footer">
+                    <strong>Gruppo di Progetto:</strong><br>
+                    Michela Di Campli, Alexia Dinescu, Sofia Mazzetti, Elena Paniccià
+                </p>
+            </div>
+            <div class="footer-links">
+                <h3>Esplora il Progetto</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="topic.html">Argomento del Progetto</a></li>
+                    <li><a href="methodology.html">Metodologia</a></li>
+                    <li><a href="ontology.html">Estensione Ontologica</a></li>
+                    <li><a href="sparql.html">Query SPARQL</a></li>
+                    <li><a href="llm.html">Esperimenti LLM</a></li>
+                    <li><a href="rdf.html">Triple RDF</a></li>
+                    <li><a href="results.html">Risultati e Confronto</a></li>
+                    <li><a href="challenges.html">Sfide e Conclusioni</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Alma Mater Studiorum - Università di Bologna. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPT PENTRU EFECTUL DE ÎNTRERUPĂTOR (TOGGLE) -->
+    <script>
+        // 2. Meniul Inteligent (Smart Dropdown)
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('mouseenter', () => {
+                const content = dropdown.querySelector('.dropdown-content');
+                
+                // Obținem coordonatele butonului pe ecran
+                const rect = dropdown.getBoundingClientRect();
+                
+                // Verificăm cât spațiu (în pixeli) avem de la buton până la marginea de jos a ecranului.
+                // 150px este înălțimea aproximativă a listei tale derulante.
+                if (window.innerHeight - rect.bottom < 150) {
+                    content.classList.add('drop-up'); // Nu e loc jos -> Deschide în SUS
+                } else {
+                    content.classList.remove('drop-up'); // Este loc jos -> Deschide normal în JOS
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Ontology Extension - Bologna Urban POI Knowledge Graph</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- COMPACT HEADER ANIMAT -->
+    <header class="compact-header header-ontology">
+        <div class="compact-header-content">
+            <h1>Bologna Urban Points of Interest</h1>
+            <p>Knowledge Graph Enrichment with LLMs</p>
+        </div>
+    </header>
+
+    <!-- NAVIGATION: The exact same menu for seamless navigation -->
+    <nav id="main-menu" class="navigation-bar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="topic.html">Project Topic</a></li>
+            <li><a href="methodology.html">Methodology</a></li>
+            <li><a href="ontology.html">Ontology Extension</a></li>
+            <!-- AICI ÎNCEPE GRUPAREA (DROPDOWN) -->
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Technical Details ▾</a>
+                <div class="dropdown-content">
+                    <a href="sparql.html">SPARQL Queries</a>
+                    <a href="llm.html">LLM Experiments</a>
+                    <a href="rdf.html">RDF Triples</a>
+                </div>
+            </li>
+            <!-- AICI SE TERMINĂ GRUPAREA 
+            <li><a href="sparql.html">SPARQL Queries</a></li>
+            <li><a href="llm.html">LLM Experiments</a></li>
+            <li><a href="rdf.html">RDF Triples</a></li> -->
+            <li><a href="results.html">Results</a></li>
+            <li><a href="challenges.html">Challenges</a></li>
+        </ul>
+    </nav>
+
+    <!-- MAIN CONTENT: Ontology Extension -->
+    <main id="ontology-content" class="container">
+        
+        <section id="ontology-intro" class="content-section">
+            <h2>Ontology Extension</h2>
+            
+            <h3>Proposta di estensione ontologica locale in Protégé</h3>
+            
+            <!-- PARTEA 1 -->
+            <p>A seguito dell'analisi dell'ontologia nazionale POI-AP_IT e del confronto con i dataset open data del Comune di Bologna, è emersa la necessità di estendere il vocabolario esistente al fine di rappresentare alcune categorie di punti di interesse urbani non esplicitamente modellate nell'ontologia di riferimento. Per questo motivo è stata progettata e implementata, mediante l'editor Protégé, un'ontologia locale denominata <em>bologna-poi</em>, identificata dall'IRI <a href="http://dati.comune.bologna.it/ontology/bologna-poi" target="_blank" class="text-link">http://dati.comune.bologna.it/ontology/bologna-poi</a> e basata sul riuso dei concetti definiti nell'ontologia nazionale.</p>
+
+            <p>L'estensione è stata realizzata seguendo un approccio incrementale e conservativo, volto a garantire la massima interoperabilità con il modello nazionale. In particolare, è stata introdotta la classe <code>BolognaUrbanPointOfInterest</code>, definita come sottoclasse di <code>PointOfInterest</code>, con il ruolo di superclasse locale per la rappresentazione dei punti di interesse urbani della città di Bologna.</p>
+
+            <p>A partire da questa classe sono state definite le principali categorie presenti nei dataset comunali, ovvero <code>UrbanFurniture</code>, <code>BusStop</code>, <code>ParkingArea</code>, <code>PublicToilet</code> e <code>Portico</code>. La classe <code>UrbanFurniture</code> è stata ulteriormente specializzata nelle sottoclassi <code>Bench</code>, <code>Bin</code> e <code>Fountain</code>, al fine di distinguere le diverse tipologie di arredo urbano disponibili nei dati di origine.</p>
+
+            <p>Una volta definita la gerarchia delle classi, l'attività si è concentrata sulla modellazione delle proprietà. È stato adottato un principio di riuso sistematico delle proprietà già disponibili nelle ontologie nazionali importate, utilizzando ove possibile elementi quali <code>name</code>, <code>identifier</code>, <code>description</code>, <code>fullAddress</code>, <code>URL</code> e altre proprietà descrittive già consolidate. Solo nei casi in cui il vocabolario esistente non risultasse sufficiente a rappresentare le informazioni contenute nei dataset comunali sono state introdotte nuove datatype properties locali.</p>
+
+            <!-- PARTEA 2 -->
+            <p>Tra queste rientrano, ad esempio, proprietà specifiche per alcune sottoclassi, come <code>BusStopCode</code>, <code>BusLine</code> e <code>BusStopName</code> per le fermate autobus, <code>ParkingCapacity</code> e <code>Tariff</code> per le aree di parcheggio, <code>Material</code> e <code>StructureType</code> per l'arredo urbano, e <code>LISVideoGuide</code> e <code>opens</code> per strutture dotate di informazioni aggiuntive su orari e accessibilità. Per ciascuna proprietà sono stati definiti opportuni domini e range, utilizzando datatypes standard XML Schema quali <code>xsd:string</code>, <code>xsd:integer</code>, <code>xsd:boolean</code>, <code>xsd:date</code> e <code>xsd:anyURI</code>.</p>
+
+            <p>Particolare attenzione è stata dedicata anche alla modellazione delle relazioni semantiche tra le entità. A tale scopo sono state introdotte due object properties specifiche. La proprietà <code>hostsPOI</code> è stata definita per rappresentare il fatto che un <code>Portico</code> possa ospitare uno o più punti di interesse urbani. Il dominio della proprietà è stato quindi associato alla classe <code>Portico</code>, mentre il range è stato definito come <code>BolognaUrbanPointOfInterest</code>. In modo complementare, è stata introdotta la proprietà <code>isUnderPortico</code>, utilizzata per esprimere la relazione inversa dal punto di interesse verso il portico sotto il quale esso è collocato. Questa scelta consente di rappresentare esplicitamente una caratteristica distintiva del contesto urbano bolognese, valorizzando il ruolo dei portici come elemento strutturale e spaziale della città.</p>
+
+            <p>L'ontologia risultante costituisce quindi un'estensione locale del modello nazionale, capace di preservarne la compatibilità semantica e, allo stesso tempo, di fornire una rappresentazione più dettagliata e aderente alle caratteristiche dei punti di interesse urbani presenti nel territorio comunale di Bologna.</p>
+
+            <!-- IMAGINEA ONTOLOGIEI (INLOCUIEȘTE NOTA TA) -->
+            <div class="query-result-image">
+                <img src="images/Ontology_image.jpg" alt="Struttura dell'ontologia locale bologna-poi">
+                <p class="figure-caption">Figura 5: Struttura dell'ontologia locale bologna-poi e relazioni con l'ontologia nazionale POI-AP_IT.</p>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- FOOTER MODERN ȘI COMPLET -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-info">
+                <h3>Knowledge Graph Enrichment with LLMs</h3>
+                <p><strong>Corso:</strong> Metodi Semantici per la Trasformazione Digitale</p>
+                <p><strong>Anno Accademico:</strong> 2025/2026</p>
+                <p class="team-footer">
+                    <strong>Gruppo di Progetto:</strong><br>
+                    Michela Di Campli, Alexia Dinescu, Sofia Mazzetti, Elena Paniccià
+                </p>
+            </div>
+            <div class="footer-links">
+                <h3>Esplora il Progetto</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="topic.html">Argomento del Progetto</a></li>
+                    <li><a href="methodology.html">Metodologia</a></li>
+                    <li><a href="ontology.html">Estensione Ontologica</a></li>
+                    <li><a href="sparql.html">Query SPARQL</a></li>
+                    <li><a href="llm.html">Esperimenti LLM</a></li>
+                    <li><a href="rdf.html">Triple RDF</a></li>
+                    <li><a href="results.html">Risultati e Confronto</a></li>
+                    <li><a href="challenges.html">Sfide e Conclusioni</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Alma Mater Studiorum - Università di Bologna. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPT PENTRU EFECTUL DE ÎNTRERUPĂTOR (TOGGLE) -->
+    <script>      
+        // 2. Meniul Inteligent (Smart Dropdown)
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('mouseenter', () => {
+                const content = dropdown.querySelector('.dropdown-content');
+                
+                // Obținem coordonatele butonului pe ecran
+                const rect = dropdown.getBoundingClientRect();
+                
+                // Verificăm cât spațiu (în pixeli) avem de la buton până la marginea de jos a ecranului.
+                // 150px este înălțimea aproximativă a listei tale derulante.
+                if (window.innerHeight - rect.bottom < 150) {
+                    content.classList.add('drop-up'); // Nu e loc jos -> Deschide în SUS
+                } else {
+                    content.classList.remove('drop-up'); // Este loc jos -> Deschide normal în JOS
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Results & Conclusions - Bologna Urban POI Knowledge Graph</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- COMPACT HEADER ANIMAT PENTRU CHALLENGES -->
+    <header class="compact-header header-results">
+        <div class="compact-header-content">
+            <h1>Bologna Urban Points of Interest</h1>
+            <p>Knowledge Graph Enrichment with LLMs</p>
+        </div>
+    </header>
+
+    <!-- NAVIGATION: The exact same menu -->
+    <nav id="main-menu" class="navigation-bar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="topic.html">Project Topic</a></li>
+            <li><a href="methodology.html">Methodology</a></li>
+            <li><a href="ontology.html">Ontology Extension</a></li>
+            <!-- AICI ÎNCEPE GRUPAREA (DROPDOWN) -->
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Technical Details ▾</a>
+                <div class="dropdown-content">
+                    <a href="sparql.html">SPARQL Queries</a>
+                    <a href="llm.html">LLM Experiments</a>
+                    <a href="rdf.html">RDF Triples</a>
+                </div>
+            </li>
+            <!-- AICI SE TERMINĂ GRUPAREA 
+            <li><a href="sparql.html">SPARQL Queries</a></li>
+            <li><a href="llm.html">LLM Experiments</a></li>
+            <li><a href="rdf.html">RDF Triples</a></li> -->
+            <li><a href="results.html">Results</a></li>
+            <li><a href="challenges.html">Challenges</a></li>
+        </ul>
+    </nav>
+
+    <!-- MAIN CONTENT: Results & Conclusions -->
+    <main id="results-content" class="container">
+        
+        <section id="conclusions-intro" class="content-section">
+            <h2>Discussione e conclusioni</h2>
+            
+            <p>L'obiettivo di questo progetto era sviluppare una rappresentazione semantica dei punti di interesse urbani della città di Bologna attraverso la costruzione di un'ontologia locale interoperabile con il modello nazionale POI-AP_IT e il successivo popolamento mediante open data comunali.</p>
+
+            <p>I risultati ottenuti mostrano come l'approccio adottato abbia consentito di integrare efficacemente dati eterogenei provenienti da diverse sorgenti informative all'interno di un unico modello concettuale. L'estensione dell'ontologia nazionale ha permesso di rappresentare categorie non previste esplicitamente nel vocabolario di partenza, mantenendo al contempo la compatibilità con gli standard nazionali. Tra queste rientrano:</p>
+            <ul>
+                <li>L'arredo urbano (panchine, cestini, fontane)</li>
+                <li>I bagni pubblici</li>
+                <li>Le aree di parcheggio</li>
+                <li>Le fermate del trasporto pubblico locale (TPER)</li>
+                <li>I portici</li>
+            </ul>
+
+            <h3 class="subsection-title">Il ruolo dei Large Language Models (LLM)</h3>
+            <p>La sperimentazione condotta con i Large Language Models ha evidenziato il potenziale di tali strumenti nel supportare attività di modellazione semantica e generazione automatica di triple RDF. Entrambi i modelli analizzati sono stati in grado di interpretare la struttura dell'ontologia e di produrre rappresentazioni RDF coerenti con il dominio applicativo.</p>
+            
+            <p>Tuttavia, i risultati hanno mostrato differenze significative in termini di completezza dell'output, livello di dettaglio delle spiegazioni e capacità di seguire i vincoli definiti nei prompt. In particolare, le tecniche di prompting più strutturate, come il <strong>few-shot</strong> e il <strong>chain-of-thought</strong>, hanno generalmente prodotto risultati più aderenti all'ontologia rispetto al prompting <strong>zero-shot</strong>.</p>
+
+            <!-- Citat scos în evidență fără CSS Inline -->
+            <blockquote class="highlight-quote">
+                <strong>L'importanza della validazione umana:</strong> L'attività svolta ha inoltre evidenziato l'importanza della validazione umana nel processo di costruzione di un Knowledge Graph. Sebbene gli LLM possano accelerare la generazione delle triple e supportare la fase di mapping semantico, permane la necessità di verificare la correttezza delle classi, delle proprietà e dei datatype utilizzati, soprattutto in contesti caratterizzati da ontologie personalizzate e dataset complessi.
+            </blockquote>
+
+            <p>Nel complesso, il progetto dimostra come la combinazione tra ontologie, open data e modelli linguistici di grandi dimensioni possa costituire un approccio efficace per la costruzione di Knowledge Graph territoriali. La soluzione sviluppata rappresenta una base riutilizzabile per future attività di integrazione e valorizzazione dei dati urbani del Comune di Bologna.</p>
+
+            <h3 class="subsection-title">Sviluppi futuri</h3>
+            <p>Tra i possibili sviluppi futuri per il progetto rientrano:</p>
+            <ul>
+                <li>L'estensione dell'ontologia con ulteriori categorie di punti di interesse.</li>
+                <li>L'integrazione di nuovi dataset provenienti da altre amministrazioni pubbliche.</li>
+                <li>La realizzazione di procedure completamente automatizzate per la generazione e l'aggiornamento delle triple RDF.</li>
+                <li>Una valutazione sistematica della qualità delle triple generate dagli LLM attraverso metriche quantitative e framework di validazione semantica.</li>
+            </ul>
+
+        </section>
+
+    </main>
+
+    <!-- Aici începe FOOTER-ul (subsolul) -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            
+            <!-- Coloana 1: Informații despre proiect și echipă -->
+            <div class="footer-info">
+                <h3>Knowledge Graph Enrichment with LLMs</h3>
+                <p><strong>Corso:</strong> Metodi Semantici per la Trasformazione Digitale</p>
+                <p><strong>Anno Accademico:</strong> 2025/2026</p>
+                <p class="team-footer">
+                    <strong>Gruppo di Progetto:</strong><br>
+                    Michela Di Campli, Alexia Dinescu, Sofia Mazzetti, Elena Paniccià
+                </p>
+            </div>
+
+            <!-- Coloana 2: Meniul vertical (Link-uri rapide) -->
+            <div class="footer-links">
+                <h3>Esplora il Progetto</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="topic.html">Argomento del Progetto</a></li>
+                    <li><a href="methodology.html">Metodologia</a></li>
+                    <li><a href="ontology.html">Estensione Ontologica</a></li>
+                    <li><a href="sparql.html">Query SPARQL</a></li>
+                    <li><a href="llm.html">Esperimenti LLM</a></li>
+                    <li><a href="rdf.html">Triple RDF</a></li>
+                    <li><a href="results.html">Risultati e Confronto</a></li>
+                    <li><a href="challenges.html">Sfide e Conclusioni</a></li>
+                </ul>
+            </div>
+
+        </div>
+        
+        <!-- Zona de jos (Copyright) -->
+        <div class="footer-bottom">
+            <p>&copy; 2026 Alma Mater Studiorum - Università di Bologna. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPT PENTRU EFECTUL DE ÎNTRERUPĂTOR (TOGGLE) -->
+    <script>
+        // 2. Meniul Inteligent (Smart Dropdown)
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('mouseenter', () => {
+                const content = dropdown.querySelector('.dropdown-content');
+                
+                // Obținem coordonatele butonului pe ecran
+                const rect = dropdown.getBoundingClientRect();
+                
+                // Verificăm cât spațiu (în pixeli) avem de la buton până la marginea de jos a ecranului.
+                // 150px este înălțimea aproximativă a listei tale derulante.
+                if (window.innerHeight - rect.bottom < 150) {
+                    content.classList.add('drop-up'); // Nu e loc jos -> Deschide în SUS
+                } else {
+                    content.classList.remove('drop-up'); // Este loc jos -> Deschide normal în JOS
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Methodology - Bologna Urban POI Knowledge Graph</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- COMPACT HEADER ANIMAT PENTRU CHALLENGES -->
+    <header class="compact-header header-methodology">
+        <div class="compact-header-content">
+            <h1>Bologna Urban Points of Interest</h1>
+            <p>Knowledge Graph Enrichment with LLMs</p>
+        </div>
+    </header>
+
+    <!-- NAVIGATION: The exact same menu -->
+    <nav id="main-menu" class="navigation-bar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="topic.html">Project Topic</a></li>
+            <li><a href="methodology.html">Methodology</a></li>
+            <li><a href="ontology.html">Ontology Extension</a></li>
+            <!-- AICI ÎNCEPE GRUPAREA (DROPDOWN) -->
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Technical Details ▾</a>
+                <div class="dropdown-content">
+                    <a href="sparql.html">SPARQL Queries</a>
+                    <a href="llm.html">LLM Experiments</a>
+                    <a href="rdf.html">RDF Triples</a>
+                </div>
+            </li>
+            <!-- AICI SE TERMINĂ GRUPAREA 
+            <li><a href="sparql.html">SPARQL Queries</a></li>
+            <li><a href="llm.html">LLM Experiments</a></li>
+            <li><a href="rdf.html">RDF Triples</a></li> -->
+            <li><a href="results.html">Results</a></li>
+            <li><a href="challenges.html">Challenges</a></li>
+        </ul>
+    </nav>
+
+    </main>
+    <!-- MAIN CONTENT: Methodology -->
+    <main id="methodology-content" class="container">
+        
+        <section id="methodology-intro" class="content-section">
+            <h2>Methodology</h2>
+            <p>La metodologia adottata è stata articolata in una serie di fasi:</p>
+            
+            <!-- Am scos tag-urile <br> pentru a controla spațierea pur din CSS -->
+            <ol class="methodology-phases">
+                <li class="phase">
+                    <strong>Prima fase:</strong> Ha previsto l'esplorazione dell'ontologia nazionale dei punti di interesse attraverso le keywords di SPARQL richieste per la stesura del progetto (<em>OPTIONAL, DISTINCT, UNION, FILTER and REGEX, LIMIT, ORDER BY</em>); in parallelo, sono stati pre-processati i dataset messi a disposizione dal Comune di Bologna, tramite linguaggio Python sulla piattaforma Google Colab.
+                </li>
+                
+                <li class="phase">
+                    <strong>Seconda fase:</strong> È stata estesa l'ontologia nazionale con un'ontologia locale dedicata ai punti di interesse urbani di Bologna, sviluppata mediante la piattaforma Protégé.
+                </li>
+                
+                <li class="phase">
+                    <strong>Terza fase:</strong> A partire dal CSV integrato e dal file Turtle dell'ontologia locale, sono stati confrontati <strong>Gemini Pro</strong> e <strong>ChatGPT Plus</strong> mediante tre diverse tecniche di prompting, con l'obiettivo di generare triple RDF coerenti con il modello ontologico; successivamente sono state comparate e discusse le prestazioni dei diversi modelli LLM.
+                </li>
+                
+                <li class="phase">
+                    <strong>Ultima fase:</strong> È stato realizzato il sito web del progetto, pubblicato su <a href="https://github.com" target="_blank" class="text-link">GitHub</a> e destinato a presentare metodologia, query, prompt e risultati ottenuti.
+                </li>
+            </ol>
+        </section>
+
+    </main>
+
+    <!-- FOOTER MODERN ȘI COMPLET -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-info">
+                <h3>Knowledge Graph Enrichment with LLMs</h3>
+                <p><strong>Corso:</strong> Metodi Semantici per la Trasformazione Digitale</p>
+                <p><strong>Anno Accademico:</strong> 2025/2026</p>
+                <p class="team-footer">
+                    <strong>Gruppo di Progetto:</strong><br>
+                    Michela Di Campli, Alexia Dinescu, Sofia Mazzetti, Elena Paniccià
+                </p>
+            </div>
+            <div class="footer-links">
+                <h3>Esplora il Progetto</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="topic.html">Argomento del Progetto</a></li>
+                    <li><a href="methodology.html">Metodologia</a></li>
+                    <li><a href="ontology.html">Estensione Ontologica</a></li>
+                    <li><a href="sparql.html">Query SPARQL</a></li>
+                    <li><a href="llm.html">Esperimenti LLM</a></li>
+                    <li><a href="rdf.html">Triple RDF</a></li>
+                    <li><a href="results.html">Risultati e Confronto</a></li>
+                    <li><a href="challenges.html">Sfide e Conclusioni</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Alma Mater Studiorum - Università di Bologna. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPT PENTRU EFECTUL DE ÎNTRERUPĂTOR (TOGGLE) -->
+    <script>
+        // 2. Meniul Inteligent (Smart Dropdown)
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('mouseenter', () => {
+                const content = dropdown.querySelector('.dropdown-content');
+                
+                // Obținem coordonatele butonului pe ecran
+                const rect = dropdown.getBoundingClientRect();
+                
+                // Verificăm cât spațiu (în pixeli) avem de la buton până la marginea de jos a ecranului.
+                // 150px este înălțimea aproximativă a listei tale derulante.
+                if (window.innerHeight - rect.bottom < 150) {
+                    content.classList.add('drop-up'); // Nu e loc jos -> Deschide în SUS
+                } else {
+                    content.classList.remove('drop-up'); // Este loc jos -> Deschide normal în JOS
+                }
+            });
+        });
+    </script>
+</body>
+</html>

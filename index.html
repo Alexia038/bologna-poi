@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Report: Knowledge Graphs & LLMs</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- HEADER INTERACTIV CU GALERIE GRID (Stil Infinity) -->
+    <header id="site-header">
+        
+        <!-- Zona 1: Galeria pe un singur rând (4 coloane, 8 imagini suprapuse) -->
+        <div class="header-gallery">
+            
+            <!-- Card 1: Porticurile -->
+            <div class="gallery-card">
+                <!-- Imaginea care stă ascunsă în spate -->
+                <img class="img-back" src="images/portico-2.jpeg" alt="Portico di Bologna">
+                <!-- Imaginea care stă deasupra inițial -->
+                <img class="img-front" src="images/portico_san_luca-1.webp" alt="Portico San Luca">
+            </div>
+
+            <!-- Card 2: Piețe și Plafoane -->
+            <div class="gallery-card">
+                <img class="img-back" src="images/piazza.jpeg" alt="Piazza Maggiore">
+                <img class="img-front" src="images/portico-3.jpeg" alt="Soffitto Portico">
+            </div>
+
+            <!-- Card 3: Transport 1 -->
+            <div class="gallery-card">
+                <img class="img-back" src="images/fermata.jpeg" alt="Fermata TPER">
+                <img class="img-front" src="images/bus-1.jpeg" alt="Autobus TPER 1">
+            </div>
+
+            <!-- Card 4: Transport 2 și Turnurile -->
+            <div class="gallery-card">
+                <img class="img-back" src="images/torri.jpeg" alt="Le Due Torri">
+                <img class="img-front" src="images/bus-2.jpeg" alt="Autobus TPER 2">
+            </div>
+
+        </div>
+
+        <!-- Zona 2: Titlul și descrierea -->
+        <div class="header-text-section">
+            <h1>Bologna Urban Points of Interest Knowledge Graph</h1>
+            <p>Metodologia per la costruzione e l'arricchimento di un grafo di conoscenza dei punti di interesse urbani di Bologna.</p>
+        </div>
+    </header>
+
+    <!-- NAVIGATION: The menu that will stay the same across all pages -->
+    <nav id="main-menu" class="navigation-bar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="topic.html">Project Topic</a></li>
+            <li><a href="methodology.html">Methodology</a></li>
+            <li><a href="ontology.html">Ontology Extension</a></li>
+            <!-- AICI ÎNCEPE GRUPAREA (DROPDOWN) -->
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Technical Details ▾</a>
+                <div class="dropdown-content">
+                    <a href="sparql.html">SPARQL Queries</a>
+                    <a href="llm.html">LLM Experiments</a>
+                    <a href="rdf.html">RDF Triples</a>
+                </div>
+            </li>
+            <!-- AICI SE TERMINĂ GRUPAREA
+            <li><a href="sparql.html">SPARQL Queries</a></li>
+            <li><a href="llm.html">LLM Experiments</a></li> 
+            <li><a href="rdf.html">RDF Triples</a></li>-->
+            <li><a href="results.html">Results</a></li>
+            <li><a href="challenges.html">Challenges</a></li>
+        </ul>
+    </nav>
+
+    <!-- LAYOUT PRINCIPAL (Împărțit în 3 părți: 2/3 Stânga, 1/3 Dreapta) -->
+    <div class="homepage-layout">
+        
+        <!-- PARTEA STÂNGĂ: Textul tău principal (Ocupă 2 coloane) -->
+        <main class="main-content">
+            <section id="abstract" class="content-section">
+            <h2>Project Abstract</h2>
+            <!-- Added the new abstract text, split into two paragraphs for better readability -->
+            <p>Il progetto si propone l'obiettivo di rappresentare e arricchire in modo semantico i punti di interesse urbani della città di Bologna. A partire da dataset eterogenei messi a disposizione dal portale <a href="https://opendata.comune.bologna.it/pages/home/?flg=it-it" target="_blank">Open Data del Comune di Bologna</a>, il lavoro mira a costruire un grafo di conoscenza che riutilizzi l'ontologia nazionale dei <a href="https://w3id.org/italia/onto/POI" target="_blank">Punti di Interesse (POI-AP_IT)</a>, sviluppata da AGID, e, dove necessario, la estenda con concetti specifici del contesto urbano bolognese.</p>
+            <p>Il lavoro si articola in diverse fasi: l'esplorazione dell'ontologia nazionale tramite <strong>SPARQL</strong>, l'estensione ontologica locale tramite <strong>Protégé</strong> e la generazione automatica di triple RDF confrontando le prestazioni dei Large Language Models <strong>Gemini Pro</strong> e <strong>ChatGPT Plus</strong>. L'intero processo è guidato dalla volontà di colmare un gap semantico tra il modello nazionale e le specificità del contesto bolognese, garantendo al tempo stesso il riuso del vocabolario esistente.</p>
+        </section>
+
+        <section id="team" class="content-section">
+            <h2>Team Members</h2>
+            <ul class="team-list">
+                <li class="team-member"><strong>Michela Di Campli</strong> - [Matricola: 1180742]</li>
+                <li class="team-member"><strong>Alexia Dinescu</strong> - [Matricola:  1164904]</li>
+                <li class="team-member"><strong>Sofia Mazzetti</strong> - [Matricola: 1165641]</li>
+                <li class="team-member"><strong>Elena Paniccià</strong> - [Matricola: 1165613]</li>
+            </ul>
+        </section>
+        </main>
+
+        <!-- PARTEA DREAPTĂ: Bara laterală (Ocupă 1 coloană, conține 2 rânduri) -->
+        <aside class="sidebar-gallery">
+            
+            <!-- RÂNDUL 1: Card Ontology (Static) -->
+            <a href="ontology.html" class="side-card">
+                <img src="images/Ontology_image.jpg" alt="Ontology Graph">
+                <div class="side-card-text">Ontology Extension</div>
+            </a>
+
+            <!-- RÂNDUL 2: Card SPARQL (Cu derulare automată de imagini) -->
+            <a href="sparql.html" class="side-card">
+                <div class="slider-wrapper">
+                    <div class="slider-container">
+                        <!-- Pune aici imaginile tale cu interogări SPARQL -->
+                        <img src="images/Query1.png" alt="SPARQL Query 1">
+                        <img src="images/Query2.png" alt="SPARQL Query 2">
+                        <img src="images/Query3.png" alt="SPARQL Query 3">
+                        <img src="images/Query4.png" alt="SPARQL Query 4">
+                    </div>
+                </div>
+                <div class="side-card-text">SPARQL Queries</div>
+            </a>
+            
+        </aside>
+
+    </div>
+
+    <!-- Aici începe FOOTER-ul (subsolul) -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            
+            <!-- Coloana 1: Informații despre proiect și echipă -->
+            <div class="footer-info">
+                <h3>Knowledge Graph Enrichment with LLMs</h3>
+                <p><strong>Corso:</strong> Metodi Semantici per la Trasformazione Digitale</p>
+                <p><strong>Anno Accademico:</strong> 2025/2026</p>
+                <p class="team-footer">
+                    <strong>Gruppo di Progetto:</strong><br>
+                    Michela Di Campli, Alexia Dinescu, Sofia Mazzetti, Elena Paniccià
+                </p>
+            </div>
+
+            <!-- Coloana 2: Meniul vertical (Link-uri rapide) -->
+            <div class="footer-links">
+                <h3>Esplora il Progetto</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="topic.html">Argomento del Progetto</a></li>
+                    <li><a href="methodology.html">Metodologia</a></li>
+                    <li><a href="ontology.html">Estensione Ontologica</a></li>
+                    <li><a href="sparql.html">Query SPARQL</a></li>
+                    <li><a href="llm.html">Esperimenti LLM</a></li>
+                    <li><a href="rdf.html">Triple RDF</a></li>
+                    <li><a href="results.html">Risultati e Confronto</a></li>
+                    <li><a href="challenges.html">Sfide e Conclusioni</a></li>
+                </ul>
+            </div>
+
+        </div>
+        
+        <!-- Zona de jos (Copyright) -->
+        <div class="footer-bottom">
+            <p>&copy; 2026 Alma Mater Studiorum - Università di Bologna. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPT PENTRU EFECTUL DE ÎNTRERUPĂTOR (TOGGLE) -->
+    <script>
+        const cards = document.querySelectorAll('.gallery-card');
+
+        cards.forEach(card => {
+            // De fiecare dată când mouse-ul INTRĂ pe imagine...
+            card.addEventListener('mouseenter', () => {
+                // ...folosim 'toggle' ca să alternăm clasa (pornit/oprit) infinit!
+                card.classList.toggle('is-revealed');
+            });
+        });
+
+        // 2. Meniul Inteligent (Smart Dropdown)
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('mouseenter', () => {
+                const content = dropdown.querySelector('.dropdown-content');
+                
+                // Obținem coordonatele butonului pe ecran
+                const rect = dropdown.getBoundingClientRect();
+                
+                // Verificăm cât spațiu (în pixeli) avem de la buton până la marginea de jos a ecranului.
+                // 150px este înălțimea aproximativă a listei tale derulante.
+                if (window.innerHeight - rect.bottom < 150) {
+                    content.classList.add('drop-up'); // Nu e loc jos -> Deschide în SUS
+                } else {
+                    content.classList.remove('drop-up'); // Este loc jos -> Deschide normal în JOS
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

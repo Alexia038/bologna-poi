@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>SPARQL Queries - Bologna Urban POI Knowledge Graph</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- COMPACT HEADER ANIMAT PENTRU CHALLENGES -->
+    <header class="compact-header header-sparql">
+        <div class="compact-header-content">
+            <h1>Bologna Urban Points of Interest</h1>
+            <p>Knowledge Graph Enrichment with LLMs</p>
+        </div>
+    </header>
+
+    <!-- NAVIGATION: The menu that stays exactly the same across all pages -->
+    <nav id="main-menu" class="navigation-bar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="topic.html">Project Topic</a></li>
+            <li><a href="methodology.html">Methodology</a></li>
+            <li><a href="ontology.html">Ontology Extension</a></li>
+            <!-- AICI ÎNCEPE GRUPAREA (DROPDOWN) -->
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Technical Details ▾</a>
+                <div class="dropdown-content">
+                    <a href="sparql.html">SPARQL Queries</a>
+                    <a href="llm.html">LLM Experiments</a>
+                    <a href="rdf.html">RDF Triples</a>
+                </div>
+            </li>
+            <!-- AICI SE TERMINĂ GRUPAREA
+            <li><a href="sparql.html">SPARQL Queries</a></li>
+            <li><a href="llm.html">LLM Experiments</a></li>
+            <li><a href="rdf.html">RDF Triples</a></li> -->
+            <li><a href="results.html">Results</a></li>
+            <li><a href="challenges.html">Challenges</a></li>
+        </ul>
+    </nav>
+
+<!-- MAIN CONTENT: SPARQL Queries -->
+    <main id="sparql-content" class="container">
+        
+        <section id="queries-intro" class="content-section">
+            <h2>SPARQL Queries</h2>
+            
+            <p>In questa sezione vengono riportati alcuni esempi di query SPARQL utilizzate per l'esplorazione dell'ontologia nazionale POI-AP_IT.</p>
+
+            <!-- QUERY 1 -->
+            <h3 class="subsection-title">Esplorazione generale dell'ontologia POI-AP_IT</h3>
+            <p>La seguente query è stata utilizzata per ottenere una vista generale delle risorse appartenenti all'ontologia POI-AP_IT, interrogando l'endpoint nazionale e filtrando i soggetti sul namespace dell'ontologia:</p>
+
+<pre class="code-wide"><code>PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+
+SELECT DISTINCT ?s ?p ?o
+WHERE {
+  ?s ?p ?o .
+  FILTER(STRSTARTS(STR(?s), "https://w3id.org/italia/onto/POI"))
+}
+LIMIT 100
+</code></pre>
+
+            <p>Questa query utilizza <strong>DISTINCT</strong> per evitare duplicati e <strong>FILTER</strong> per restringere il dominio alle sole risorse dell'ontologia POI-AP_IT, restituendo un campione delle triple disponibili (limitato a 100 risultati).</p>
+
+            <div class="query-result-image">
+                <img src="images/Query1.png" alt="Risultati della query per l'esplorazione generale di POI-AP_IT">
+                <p class="figure-caption">Figura 1: Risultati della query per l'esplorazione generale di POI-AP_IT.</p>
+            </div>
+
+            <hr class="section-divider">
+
+            <!-- QUERY 2 -->
+            <h3 class="subsection-title">Individuazione delle classi disponibili</h3>
+            <p>Per identificare le classi definite dall'ontologia POI-AP_IT e raccoglierne informazioni descrittive (etichette e commenti) è stata utilizzata la seguente query:</p>
+
+<pre class="code-wide"><code>PREFIX owl:  &lt;http://www.w3.org/2002/07/owl#&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+
+SELECT DISTINCT ?class ?label ?comment
+WHERE {
+  ?class a owl:Class .
+
+  OPTIONAL { ?class rdfs:label ?label . }
+  OPTIONAL { ?class rdfs:comment ?comment . }
+
+  FILTER(STRSTARTS(STR(?class), "https://w3id.org/italia/onto/POI/"))
+}
+ORDER BY ?class
+LIMIT 100
+</code></pre>
+
+            <p>In questo caso, <strong>OPTIONAL</strong> viene utilizzato per recuperare etichette e commenti quando disponibili, senza escludere le classi che ne sono prive, mentre <strong>ORDER BY</strong> consente di ordinare le classi per IRI, facilitandone la consultazione. La query ha permesso di identificare le classi riutilizzabili nel progetto e di documentarne il significato semantico prima di proporre un'estensione locale.</p>
+
+            <div class="query-result-image">
+                <img src="images/Query2.png" alt="Risultati della query per l'individuazione delle classi disponibili in POI-AP_IT">
+                <p class="figure-caption">Figura 2: Risultati della query per l'individuazione delle classi disponibili in POI-AP_IT.</p>
+            </div>
+
+            <hr class="section-divider">
+
+            <!-- QUERY 3 -->
+            <h3 class="subsection-title">Individuazione delle proprietà riutilizzabili</h3>
+            <p>Per analizzare le proprietà definite in POI-AP_IT (sia <code>owl:ObjectProperty</code> sia <code>owl:DatatypeProperty</code>) è stata impiegata la seguente query:</p>
+
+<pre class="code-wide"><code>PREFIX owl:  &lt;http://www.w3.org/2002/07/owl#&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+
+SELECT DISTINCT ?property ?label ?comment ?domain ?range ?type
+WHERE {
+  ?property a ?type .
+
+  FILTER(?type IN (owl:ObjectProperty, owl:DatatypeProperty))
+  FILTER(STRSTARTS(STR(?property), "https://w3id.org/italia/onto/POI/"))
+
+  OPTIONAL { ?property rdfs:label ?label . }
+  OPTIONAL { ?property rdfs:comment ?comment . }
+  OPTIONAL { ?property rdfs:domain ?domain . }
+  OPTIONAL { ?property rdfs:range ?range . }
+}
+ORDER BY ?property
+LIMIT 100
+</code></pre>
+
+            <p><strong>FILTER</strong> viene utilizzato sia per filtrare il tipo della proprietà (<code>ObjectProperty</code> o <code>DatatypeProperty</code>), sia per delimitare il namespace di interesse, mentre le clausole <strong>OPTIONAL</strong> consentono di recuperare metadati utili per il riuso (dominio, range, etichette, commenti). Questa query è stata fondamentale per selezionare le proprietà da riutilizzare nel mapping dei dataset bolognesi, evitando la definizione ridondante di proprietà locali.</p>
+
+            <div class="query-result-image">
+                <img src="images/Query3.png" alt="Risultati della query per l'individuazione delle proprietà riutilizzabili di POI-AP_IT">
+                <p class="figure-caption">Figura 3: Risultati della query per l'individuazione delle proprietà riutilizzabili di POI-AP_IT.</p>
+            </div>
+
+            <hr class="section-divider">
+
+            <!-- QUERY 4 -->
+            <h3 class="subsection-title">Ricerca di concetti potenzialmente rilevanti per Bologna</h3>
+            <p>Per verificare l'eventuale presenza, nell'ontologia nazionale, di concetti relativi ai servizi urbani bolognesi o ad elementi di arredo urbano, è stata definita una query che combina più pattern e fa uso di <strong>REGEX</strong>:</p>
+
+<pre class="code-wide"><code>PREFIX owl:  &lt;http://www.w3.org/2002/07/owl#&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX dct:  &lt;http://purl.org/dc/terms/&gt;
+
+SELECT DISTINCT ?resource ?type ?label ?comment ?description
+WHERE {
+  {
+    ?resource a owl:Class .
+    BIND("Class" AS ?type)
+  }
+  UNION
+  {
+    ?resource a owl:ObjectProperty .
+    BIND("ObjectProperty" AS ?type)
+  }
+  UNION
+  {
+    ?resource a owl:DatatypeProperty .
+    BIND("DatatypeProperty" AS ?type)
+  }
+
+  OPTIONAL { ?resource rdfs:label ?label . }
+  OPTIONAL { ?resource rdfs:comment ?comment . }
+  OPTIONAL { ?resource dct:description ?description . }
+
+  FILTER(STRSTARTS(STR(?resource), "https://w3id.org/italia/onto/POI/"))
+
+  FILTER(
+    REGEX(STR(?resource),    "Bologna|TPER|bench|panchina|toilet|bagno|parking|parcheggio|portico|bus stop|fermata|arredo", "i")
+    ||
+    REGEX(STR(?label),       "Bologna|TPER|bench|panchina|toilet|bagno|parking|parcheggio|portico|bus stop|fermata|arredo", "i")
+    ||
+    REGEX(STR(?comment),     "Bologna|TPER|bench|panchina|toilet|bagno|parking|parcheggio|portico|bus stop|fermata|arredo", "i")
+    ||
+    REGEX(STR(?description), "Bologna|TPER|bench|panchina|toilet|bagno|parking|parcheggio|portico|bus stop|fermata|arredo", "i")
+  )
+}
+ORDER BY ?type ?resource
+LIMIT 100
+</code></pre>
+
+            <p>La query utilizza <strong>UNION</strong> per considerare contemporaneamente classi, object property e datatype property, e filtra i risultati tramite più espressioni regolari su IRI, etichette, commenti e descrizioni, con l'obiettivo di intercettare qualsiasi risorsa che contenga riferimenti a Bologna, TPER, arredo urbano, bagni, parcheggi o portici. I risultati hanno confermato l'assenza di un supporto specifico per molte delle categorie urbane di interesse, motivando la progettazione di un'estensione ontologica locale.</p>
+
+            <div class="query-result-image">
+                <img src="images/Query4.png" alt="Risultati della query per la ricerca di concetti rilevanti per Bologna">
+                <p class="figure-caption">Figura 4: Risultati della query per la ricerca di concetti rilevanti per Bologna.</p>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Aici începe FOOTER-ul (subsolul) -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            
+            <!-- Coloana 1: Informații despre proiect și echipă -->
+            <div class="footer-info">
+                <h3>Knowledge Graph Enrichment with LLMs</h3>
+                <p><strong>Corso:</strong> Metodi Semantici per la Trasformazione Digitale</p>
+                <p><strong>Anno Accademico:</strong> 2025/2026</p>
+                <p class="team-footer">
+                    <strong>Gruppo di Progetto:</strong><br>
+                    Michela Di Campli, Alexia Dinescu, Sofia Mazzetti, Elena Paniccià
+                </p>
+            </div>
+
+            <!-- Coloana 2: Meniul vertical (Link-uri rapide) -->
+            <div class="footer-links">
+                <h3>Esplora il Progetto</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="topic.html">Argomento del Progetto</a></li>
+                    <li><a href="methodology.html">Metodologia</a></li>
+                    <li><a href="ontology.html">Estensione Ontologica</a></li>
+                    <li><a href="sparql.html">Query SPARQL</a></li>
+                    <li><a href="llm.html">Esperimenti LLM</a></li>
+                    <li><a href="rdf.html">Triple RDF</a></li>
+                    <li><a href="results.html">Risultati e Confronto</a></li>
+                    <li><a href="challenges.html">Sfide e Conclusioni</a></li>
+                </ul>
+            </div>
+
+        </div>
+        
+        <!-- Zona de jos (Copyright) -->
+        <div class="footer-bottom">
+            <p>&copy; 2026 Alma Mater Studiorum - Università di Bologna. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+    
+    <!-- SCRIPT PENTRU EFECTUL DE ÎNTRERUPĂTOR (TOGGLE) -->
+    <script>
+        // 2. Meniul Inteligent (Smart Dropdown)
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('mouseenter', () => {
+                const content = dropdown.querySelector('.dropdown-content');
+                
+                // Obținem coordonatele butonului pe ecran
+                const rect = dropdown.getBoundingClientRect();
+                
+                // Verificăm cât spațiu (în pixeli) avem de la buton până la marginea de jos a ecranului.
+                // 150px este înălțimea aproximativă a listei tale derulante.
+                if (window.innerHeight - rect.bottom < 150) {
+                    content.classList.add('drop-up'); // Nu e loc jos -> Deschide în SUS
+                } else {
+                    content.classList.remove('drop-up'); // Este loc jos -> Deschide normal în JOS
+                }
+            });
+        });
+    </script>
+</body>
+</html>

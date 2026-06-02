@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>LLM Experiments - Bologna Urban POI Knowledge Graph</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- COMPACT HEADER ANIMAT PENTRU CHALLENGES -->
+    <header class="compact-header header-llm">
+        <div class="compact-header-content">
+            <h1>Bologna Urban Points of Interest</h1>
+            <p>Knowledge Graph Enrichment with LLMs</p>
+        </div>
+    </header>
+
+    <!-- NAVIGATION: The exact same menu -->
+    <nav id="main-menu" class="navigation-bar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="topic.html">Project Topic</a></li>
+            <li><a href="methodology.html">Methodology</a></li>
+            <li><a href="ontology.html">Ontology Extension</a></li>
+            <!-- AICI ÎNCEPE GRUPAREA (DROPDOWN) -->
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Technical Details ▾</a>
+                <div class="dropdown-content">
+                    <a href="sparql.html">SPARQL Queries</a>
+                    <a href="llm.html">LLM Experiments</a>
+                    <a href="rdf.html">RDF Triples</a>
+                </div>
+            </li>
+            <!-- AICI SE TERMINĂ GRUPAREA
+            <li><a href="sparql.html">SPARQL Queries</a></li>
+            <li><a href="llm.html">LLM Experiments</a></li>
+            <li><a href="rdf.html">RDF Triples</a></li> -->
+            <li><a href="results.html">Results</a></li>
+            <li><a href="challenges.html">Challenges</a></li>
+        </ul>
+    </nav>
+
+    <!-- MAIN CONTENT: LLM Experiments -->
+    <main id="llm-content" class="container">
+        
+        <section id="llm-intro" class="content-section">
+            <h2>LLM Experiments & Prompting Techniques</h2>
+            
+            <p>A partire dal file CSV integrato e dal file Turtle dell'ontologia locale creato in Protégé, è stata progettata una fase di generazione automatica di triple RDF mediante modelli di linguaggio di grandi dimensioni (LLM). In questa fase sono stati messi a confronto due modelli, <strong>Gemini Pro</strong> e <strong>ChatGPT Plus</strong>, entrambi testati tramite tre diverse tecniche di prompting: <em>zero-shot</em>, <em>few-shot</em> e <em>zero-shot chain-of-thought</em>.</p>
+
+            <!-- TECNICA 1 -->
+            <h3 class="subsection-title">Tecnica 1 — Zero-Shot Prompting</h3>
+            <p>Nella tecnica zero-shot al modello viene fornita unicamente l'istruzione del compito, senza esempi di output attesi. Il prompt utilizzato è il seguente:</p>
+<pre class="code-wide"><code>Genera triple RDF in formato Turtle valide per descrivere i punti d’interesse urbani estratti dal dataset df_POI.csv, utilizzando la nostra ontologia.</code></pre>
+
+            <!-- TECNICA 2 -->
+            <h3 class="subsection-title">Tecnica 2 — Few-Shot Prompting</h3>
+            <p>Nella tecnica few-shot al modello vengono forniti, insieme all'istruzione del compito, alcuni esempi concreti di triple RDF attese, al fine di orientarne l'output. Il prompt utilizzato è strutturato come segue:</p>
+<pre class="code-wide"><code>Sei un esperto di Semantic Web e Knowledge Graph.
+Il tuo compito è generare triple RDF a partire dai dati CSV allegato, utilizzando esclusivamente classi e proprietà presenti nell’ontologia fornita.
+
+Example triple 1
+Subject: POI con ID POI_001 -> bo:POI_001
+Predicate: bo:isUnderPortico
+Object: Portico con ID Portico_023 -> bo:Portico_023
+RDF Triple: bo:POI_001 bo:isUnderPortico bo:Portico_023 .
+
+Example triple 2
+Subject: Portico con ID Portico_023 -> bo:Portico_023
+Predicate: bo:hostsPOI
+Object: POI con ID POI_001 -> bo:POI_001
+RDF Triple: bo:Portico_023 bo:hostsPOI bo:POI_001 .
+
+Example triple 3
+Subject: POI con ID POI_045 -> bo:POI_045
+Predicate: bo:hasCoordinates
+Object: "44.4949,11.3426"
+RDF Triple: bo:POI_045 bo:hasCoordinates "44.4949,11.3426" .
+
+Example triple 4
+Subject: POI con ID POI_045 -> bo:POI_045
+Predicate: bo:hasDistrict
+Object: "Santo Stefano"
+RDF Triple: bo:POI_045 bo:hasDistrict "Santo Stefano" .</code></pre>
+
+            <!-- TECNICA 3 (Bucata introdusă de tine) -->
+            <h3 class="subsection-title">Tecnica 3 — Zero-Shot Chain-of-Thought Prompting</h3>
+            <p>Nella tecnica zero-shot chain-of-thought, il modello viene istruito a ragionare in modo esplicito e strutturato prima di produrre l'output, seguendo una catena di pensiero definita nel prompt. Non vengono forniti esempi, ma viene specificato il processo logico da seguire:</p>
+<pre class="code-wide"><code>Sei un esperto di Semantic Web e Knowledge Graph.
+Il tuo compito è generare triple RDF (in sintassi Turtle) a partire dai dati estratti dal file "df_POI 2.csv", utilizzando esclusivamente le classi e le proprietà presenti nell’ontologia definita nel file "bologna_poi_corrected_2.ttl".
+
+Per ogni riga del CSV che ti viene fornita, devi ragionare e procedere passo dopo passo seguendo questa precisa catena di pensiero (Chain-of-Thought):
+
+1. IDENTIFICAZIONE DEL SOGGETTO E DELLA CLASSE:
+Analizza il valore di "ID_univoco" e "Tipologia POI". Qual è l’URI corretto per il soggetto? Qual è la classe dell’ontologia (rdf:type) più specifica da assegnargli?
+
+2. ESTRAZIONE DELLE PROPRIETÀ:
+Esamina ogni colonna valorizzata. Quale proprietà dell’ontologia si adatta semanticamente a questo dato? Qual è il tipo di dato corretto per il Letterale?
+
+3. VERIFICA DEI DOMINI E DEI RANGE:
+Controlla che il Soggetto appartenga al rdfs:domain corretto della proprietà e che l’Oggetto rispetti il rdfs:range.
+
+Ragioniamo passo dopo passo. Scansiona l’intero CSV fornito per individuare tutte le categorie uniche presenti nella colonna Tipologia POI.</code></pre>
+
+            <!-- TABELUL DE COMPARAȚIE (Tabella 1) -->
+            <h3 class="subsection-title">Confronto delle prestazioni tra LLMs</h3>
+            <p>Per valutare le prestazioni dei modelli linguistici impiegati, è stato effettuato un confronto qualitativo tra gli output generati da Gemini Pro e ChatGPT Plus nelle diverse configurazioni di prompting adottate.</p>
+
+            <!-- Am adăugat clasa 'comparison-table' pentru CSS -->
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>LLM</th>
+                        <th>Punti di forza</th>
+                        <th>Limiti osservati</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Gemini Pro</td>
+                        <td>Output strutturati e descrittivi, con spiegazioni dettagliate del processo di mapping tra dataset e ontologia. Buona capacità di interpretazione semantica, elevato livello di dettaglio nelle spiegazioni.</td>
+                        <td>Tendenza a produrre output dimostrativi anziché completi. In alcuni casi non identifica tutte le categorie presenti nel dataset e introduce interpretazioni non richieste.</td>
+                    </tr>
+                    <tr>
+                        <td>ChatGPT Plus</td>
+                        <td>Output orientati alla generazione delle triple RDF e alla formalizzazione della struttura ontologica. Maggiore capacità di produrre conversioni complete del dataset, buona aderenza alle istruzioni.</td>
+                        <td>Minore livello di dettaglio nelle spiegazioni metodologiche e minore contestualizzazione del processo di mapping rispetto a Gemini Pro.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p class="centered-note"><em>Per visualizzare gli esempi pratici delle triple RDF generate dai due modelli per ciascuna tecnica, si prega di visitare la sezione <strong><a href="rdf.html" class="text-link">RDF Triples ↗</a></strong>.</em></p>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER MODERN ȘI COMPLET -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-info">
+                <h3>Knowledge Graph Enrichment with LLMs</h3>
+                <p><strong>Corso:</strong> Metodi Semantici per la Trasformazione Digitale</p>
+                <p><strong>Anno Accademico:</strong> 2025/2026</p>
+                <p class="team-footer">
+                    <strong>Gruppo di Progetto:</strong><br>
+                    Michela Di Campli, Alexia Dinescu, Sofia Mazzetti, Elena Paniccià
+                </p>
+            </div>
+            <div class="footer-links">
+                <h3>Esplora il Progetto</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="topic.html">Argomento del Progetto</a></li>
+                    <li><a href="methodology.html">Metodologia</a></li>
+                    <li><a href="ontology.html">Estensione Ontologica</a></li>
+                    <li><a href="sparql.html">Query SPARQL</a></li>
+                    <li><a href="llm.html">Esperimenti LLM</a></li>
+                    <li><a href="rdf.html">Triple RDF</a></li>
+                    <li><a href="results.html">Risultati e Confronto</a></li>
+                    <li><a href="challenges.html">Sfide e Conclusioni</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Alma Mater Studiorum - Università di Bologna. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+    
+    <!-- SCRIPT PENTRU EFECTUL DE ÎNTRERUPĂTOR (TOGGLE) -->
+    <script>
+        // 2. Meniul Inteligent (Smart Dropdown)
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('mouseenter', () => {
+                const content = dropdown.querySelector('.dropdown-content');
+                
+                // Obținem coordonatele butonului pe ecran
+                const rect = dropdown.getBoundingClientRect();
+                
+                // Verificăm cât spațiu (în pixeli) avem de la buton până la marginea de jos a ecranului.
+                // 150px este înălțimea aproximativă a listei tale derulante.
+                if (window.innerHeight - rect.bottom < 150) {
+                    content.classList.add('drop-up'); // Nu e loc jos -> Deschide în SUS
+                } else {
+                    content.classList.remove('drop-up'); // Este loc jos -> Deschide normal în JOS
+                }
+            });
+        });
+    </script>
+</body>
+</html>
