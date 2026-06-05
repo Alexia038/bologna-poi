@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>SPARQL Queries - Bologna Urban POI Knowledge Graph</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- COMPACT HEADER CHALLENGES -->
+    <header class="compact-header header-sparql-bologna">
+        <div class="compact-header-content">
+            <h1>SPARQL Bologna POI</h1>
+            <p>Knowledge Graph Enrichment with LLMs</p>
+        </div>
+    </header>
+
+    <!-- NAVIGATION: The menu that stays exactly the same across all pages -->
+    <nav id="main-menu" class="navigation-bar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="topic.html">Project Topic</a></li>
+            <li><a href="methodology.html">Methodology</a></li>
+            <li><a href="ontology.html">Ontology Extension</a></li>
+            
+            <!-- DROPDOWN TEHNICE -->
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Technical Details ▾</a>
+                <div class="dropdown-content">
+                    
+                    <!-- SUB-MENIU SPARQL -->
+                    <div class="nested-dropdown">
+                        <a href="#" class="nested-dropbtn">SPARQL ▸</a>
+                        <div class="nested-dropdown-content">
+                            <a href="sparql-poi.html">Query POI-AP_IT</a>
+                            <a href="sparql-bologna.html">Bologna POI</a>
+                        </div>
+                    </div>
+                    
+                    <a href="llm.html">LLM Experiments</a>
+                    <a href="rdf.html">RDF Triples</a>
+                </div>
+            </li>
+
+            <li><a href="results.html">Results</a></li>
+            <li><a href="challenges.html">Challenges</a></li>
+
+            <li class="lang-switch"><a href="en/sparql-bologna.html">EN</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        
+        <h2>Validazione e interrogazione del Knowledge Graph</h2>
+        
+        <p>Dopo la generazione delle triple RDF a partire dal dataset integrato dei punti di interesse urbani di Bologna, le istanze sono state importate nell'ontologia locale per costruire un unico Knowledge Graph contenente sia lo schema ontologico sia i dati.</p>
+
+        <p>La validazione del grafo è stata effettuata mediante il reasoner <strong>HermiT</strong>, che ha consentito di verificare la consistenza semantica delle classi, delle proprietà e delle triple generate. Una volta completata la fase di validazione, il Knowledge Graph è stato interrogato tramite query SPARQL utilizzando <strong>Google Colab</strong> e la libreria Python <code>rdflib</code>.</p>
+
+        <p>Le interrogazioni hanno permesso di esplorare sia la struttura dell'ontologia sia le istanze generate a partire dai dati originali, verificando la corretta rappresentazione di elementi quali fermate TPER, arredo urbano, portici, parcheggi e servizi pubblici.</p>
+
+        <p>Il notebook completo contenente le query SPARQL e i relativi risultati è disponibile al seguente link:</p>
+
+        <!-- BUTON GOOGLE COLAB  -->
+        <div style="text-align: center; margin: 40px 0;">
+                <a href="https://colab.research.google.com/drive/1WE2r62689bZmbuE2Izbi3XaNzq87uTez#scrollTo=bVNgzCvx_fOi" target="_blank" class="action-button">
+                    Google Colab – Notebook completo delle query SPARQL e dei risultati
+                </a>
+        </div>
+
+        <p>Di seguito sono riportati alcuni esempi di query SPARQL eseguite sul Knowledge Graph di Bologna, con i relativi risultati visualizzati come screenshot.</p>
+
+        <!-- =========================================
+             SECȚIUNEA DE QUERY-URI (1 din 5)
+             ========================================= -->
+        
+        <div class="query-section" style="margin-top: 50px; margin-bottom: 60px;">
+            <h3 style="color: #2c3e50; border-bottom: 2px solid #06d6a0; padding-bottom: 8px;">
+                1. Query SPARQL per trovare l'ontologia (Istanze di bo:Bench)
+            </h3>
+            <p>Esecuzione della query tramite la libreria <code>rdflib</code> per estrarre le prime 10 istanze della classe panchine (Bench).</p>
+
+            <!-- BLOCUL DE COD (Stilizat ca un editor IDE/Colab) -->
+<pre style="margin: 0;"><code style="color: #fdf6e3; font-family: 'Courier New', Courier, monospace; font-size: 1.05em;">query = """
+PREFIX bo: &lt;http://dati.comune.bologna.it/ontology/bologna-poi#&gt;
+
+SELECT ?bench
+WHERE {
+  ?bench a bo:Bench .
+}
+LIMIT 10
+"""
+
+for row in g.query(query):
+    print(row.bench)</code></pre>
+            </div>
+
+            <!-- IMAGINEA CU REZULTATELE -->
+            <h4 style="margin-bottom: 15px; color: #34495e;">Esempio di Output:</h4>
+            <div style="text-align: center;">
+                <img src="images/bolo_poi1.jpeg" alt="Risultati Query Bench" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); border: 1px solid #ecf0f1;">
+            </div>
+        </div>
+
+        <!-- =========================================
+             SECȚIUNEA DE QUERY-URI (2 din 5)
+             ========================================= -->
+        
+        <div class="query-section" style="margin-top: 50px; margin-bottom: 60px;">
+            <h3 style="color: #2c3e50; border-bottom: 2px solid #06d6a0; padding-bottom: 8px;">
+                2. Query SPARQL per la ricerca di concetti rilevanti per Bologna
+            </h3>
+            <p>Esecuzione della query tramite la libreria <code>rdflib</code> per esplorare le classi, le object property e le datatype property presenti nell'ontologia locale.</p>
+
+            <!-- BLOCUL DE COD (Stilizat ca un editor IDE/Colab) -->
+<pre style="margin: 0;"><code style="color: #fdf6e3; font-family: 'Courier New', Courier, monospace; font-size: 1.05em;">query = """
+PREFIX owl:  &lt;http://www.w3.org/2002/07/owl#&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX dct:  &lt;http://purl.org/dc/terms/&gt;
+
+SELECT DISTINCT ?resource ?type ?label ?comment ?description
+WHERE {
+  {
+    ?resource a owl:Class .
+    BIND("Class" AS ?type)
+  }
+  UNION
+  {
+    ?resource a owl:ObjectProperty .
+    BIND("ObjectProperty" AS ?type)
+  }
+  UNION
+  {
+    ?resource a owl:DatatypeProperty .
+    BIND("DatatypeProperty" AS ?type)
+  }
+
+  OPTIONAL { ?resource rdfs:label ?label . }
+  OPTIONAL { ?resource rdfs:comment ?comment . }
+  OPTIONAL { ?resource dct:description ?description . }
+
+  FILTER(STRSTARTS(STR(?resource), "http://dati.comune.bologna.it/ontology/bologna-poi#"))
+}
+ORDER BY ?type ?resource
+LIMIT 100
+"""
+
+for row in g.query(query):
+    print("Risorsa:", row.resource)
+    print("Tipo:", row.type)
+    print("Label:", row.label)
+    print("Commento:", row.comment)
+    print("---")</code></pre>
+            </div>
+
+            <!-- IMAGINE -->
+            <h4 style="margin-bottom: 15px; color: #34495e;">Esempio di Output:</h4>
+            <div style="text-align: center;">
+                <img src="images/bolo_poi2.jpeg" alt="Risultati Query Concetti Rilevanti" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); border: 1px solid #ecf0f1;">
+            </div>
+        </div>
+
+                <!-- =========================================
+             SECȚIUNEA DE QUERY-URI (3 din 5)
+             ========================================= -->
+        
+        <div class="query-section" style="margin-top: 50px; margin-bottom: 60px;">
+            <h3 style="color: #2c3e50; border-bottom: 2px solid #06d6a0; padding-bottom: 8px;">
+                3. Query SPARQL sulle panchine
+            </h3>
+            <p>Esecuzione della query tramite <code>rdflib</code> per estrarre informazioni dettagliate sulle panchine (istanze di <code>bo:Bench</code>), includendo il quartiere, il materiale e la descrizione.</p>
+
+            <!-- BLOCUL DE COD  -->
+<pre style="margin: 0;"><code style="color: #fdf6e3; font-family: 'Courier New', Courier, monospace; font-size: 1.05em;">query = """
+PREFIX bo: &lt;http://dati.comune.bologna.it/ontology/bologna-poi#&gt;
+PREFIX l0: &lt;https://w3id.org/italia/onto/l0/&gt;
+
+SELECT ?bench ?district ?material ?description
+WHERE {
+  ?bench a bo:Bench ;
+         bo:hasDistrict ?district ;
+         bo:hasMaterial ?material ;
+         l0:description ?description .
+}
+LIMIT 20
+"""
+
+for row in g.query(query):
+    print(row.bench, row.district, row.material, row.description)</code></pre>
+            </div>
+
+            <!-- IMAGINE-->
+            <h4 style="margin-bottom: 15px; color: #34495e;">Esempio di Output:</h4>
+            <div style="text-align: center;">
+                <img src="images/bolo_poi3.jpeg" alt="Risultati Query Panchine" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); border: 1px solid #ecf0f1;">
+            </div>
+        </div>
+
+        <!-- =========================================
+             SECȚIUNEA DE QUERY-URI (4 din 5)
+             ========================================= -->
+        
+        <div class="query-section" style="margin-top: 50px; margin-bottom: 60px;">
+            <h3 style="color: #2c3e50; border-bottom: 2px solid #06d6a0; padding-bottom: 8px;">
+                4. Query SPARQL per i portici
+            </h3>
+            <p>Esecuzione della query tramite <code>rdflib</code> per estrarre le istanze dei portici (<code>bo:Portico</code>), includendo la descrizione testuale e la complessa geometria spaziale associata (GeoShape).</p>
+
+            <!-- CODE -->
+<pre style="margin: 0;"><code style="color: #fdf6e3; font-family: 'Courier New', Courier, monospace; font-size: 1.05em;">query = """
+PREFIX bo: &lt;http://dati.comune.bologna.it/ontology/bologna-poi#&gt;
+PREFIX l0: &lt;https://w3id.org/italia/onto/l0/&gt;
+
+SELECT ?portico ?description ?shape
+WHERE {
+  ?portico a bo:Portico .
+
+  OPTIONAL { ?portico l0:description ?description . }
+  OPTIONAL { ?portico bo:hasGeoShape ?shape . }
+}
+LIMIT 20
+"""
+
+for row in g.query(query):
+    print("Portico:", row.portico)
+    print("Descrizione:", row.description)
+    print("GeoShape:", str(row.shape)[:120] if row.shape else "")
+    print("---")</code></pre>
+            </div>
+
+            <!-- IMAGINE AI -->
+            <h4 style="margin-bottom: 15px; color: #34495e;">Esempio di Output:</h4>
+            <div style="text-align: center;">
+                <img src="images/bolo_poi4.jpeg" alt="Risultati Query Portici" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); border: 1px solid #ecf0f1;">
+                
+                <!-- NOTA AI -->
+                <p style="font-size: 0.85em; color: #7f8c8d; margin-top: 10px; font-style: italic;">
+                    *Nota: Questa immagine è stata generata con l'ausilio dell'AI a scopo illustrativo, in quanto l'output testuale originale (in particolare le coordinate del GeoShape) risultava troppo lungo orizzontalmente per una corretta visualizzazione nella pagina.
+                </p>
+            </div>
+        </div>
+
+                <!-- =========================================
+             SECȚIUNEA DE QUERY-URI (5 din 5)
+             ========================================= -->
+        
+        <div class="query-section" style="margin-top: 50px; margin-bottom: 60px;">
+            <h3 style="color: #2c3e50; border-bottom: 2px solid #06d6a0; padding-bottom: 8px;">
+                5. Query SPARQL per tutte le fermate TPER con nome e linea
+            </h3>
+            <p>Esecuzione della query tramite <code>rdflib</code> per estrarre le fermate degli autobus TPER (istanze di <code>bo:BusStop</code>), includendo il nome della fermata e la linea corrispondente.</p>
+
+            <!-- BLOCUL DE COD -->
+<pre style="margin: 0;"><code style="color: #fdf6e3; font-family: 'Courier New', Courier, monospace; font-size: 1.05em;">query = """
+PREFIX bo: &lt;http://dati.comune.bologna.it/ontology/bologna-poi#&gt;
+
+SELECT ?stop ?name ?line
+WHERE {
+    ?stop a bo:BusStop ;
+          bo:hasBusStopName ?name ;
+          bo:hasBusLine ?line .
+}
+LIMIT 20
+"""
+
+for row in g.query(query):
+    print("Fermata:", row.name)
+    print("Linea:", row.line)
+    print("URI:", row.stop)
+    print("-----")</code></pre>
+            </div>
+
+            <!-- IMAGINEA CU REZULTATELE -->
+            <h4 style="margin-bottom: 15px; color: #34495e;">Esempio di Output:</h4>
+            <div style="text-align: center;">
+                <img src="images/bolo_poi5.jpeg" alt="Risultati Query Fermate TPER" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); border: 1px solid #ecf0f1;">
+            </div>
+        </div>
+
+        <p>Questa fase ha confermato la correttezza del Knowledge Graph generato e la sua effettiva interrogabilità attraverso SPARQL, completando il processo di costruzione e validazione del grafo di conoscenza.</p>
+
+    </main>
+
+
+    <!--  FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            
+            <!-- Coloana 1 -->
+            <div class="footer-info">
+                <h3>Knowledge Graph Enrichment with LLMs</h3>
+                <p><strong>Corso:</strong> Metodi Semantici per la Trasformazione Digitale</p>
+                <p><strong>Anno Accademico:</strong> 2025/2026</p>
+                <p class="team-footer">
+                    <strong>Gruppo di Progetto:</strong><br>
+                    Michela Di Campli, Alexia Dinescu, Sofia Mazzetti, Elena Paniccià<br>
+                    <a href="https://github.com/Alexia038/bologna-poi" target="_blank" class="text-link">Repository GitHub</a>
+                </p>
+                <p><strong>Report Overleaf:</strong></p>
+                <a href="https://it.overleaf.com/read/wbzwbjfmfwtc#99bb37" target="_blank" class="text-link">Knowledge Graph dei Punti di Interesse Urbani di Bologna</a>
+            </div>
+
+            <!-- Coloana 2 -->
+            <div class="footer-links">
+                <h3>Esplora il Progetto</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="topic.html">Argomento del Progetto</a></li>
+                    <li><a href="methodology.html">Metodologia</a></li>
+                    <li><a href="ontology.html">Estensione Ontologica</a></li>
+                    <li><a href="sparql-poi.html">SPARQL Query POI-AP_IT</a></li>
+                    <li><a href="sparql-bologna.html">SPARQL Query Bologna</a></li>
+                    <li><a href="llm.html">Esperimenti LLM</a></li>
+                    <li><a href="rdf.html">Triple RDF</a></li>
+                    <li><a href="results.html">Risultati e Confronto</a></li>
+                    <li><a href="challenges.html">Sfide e Conclusioni</a></li>
+                </ul>
+            </div>
+
+        </div>
+        
+        <!-- Copyright) -->
+        <div class="footer-bottom">
+            <p>&copy; 2026 Alma Mater Studiorum - Università di Bologna. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+    
+    <!-- SCRIPT TOGGLE) -->
+    <script>
+        // 2. Smart Dropdown)
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('mouseenter', () => {
+                const content = dropdown.querySelector('.dropdown-content');
+                
+                // Get the coordinates of the button on the screen
+                const rect = dropdown.getBoundingClientRect();
+                
+                // Check how much space (in pixels) we have from the button to the bottom edge of the screen.
+                // 150px is the approximate height of your dropdown list.
+                if (window.innerHeight - rect.bottom < 150) {
+                    content.classList.add('drop-up'); // No room below -> Open UPWARDS
+                } else {
+                    content.classList.remove('drop-up'); // There is room below -> Open normally downwards
+                }
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // Get the URL of the current page
+            const currentUrl = window.location.href;
+            
+            // Select all links in the navigation bar
+            const navLinks = document.querySelectorAll('.navigation-bar a');
+            
+            navLinks.forEach(link => {
+                // If the link address matches the current page address
+                if (link.href === currentUrl) {
+                    link.classList.add('active'); // Highlight the button
+                    
+                    // If the link is in the dropdown menu (e.g., SPARQL), highlight the parent button ("Technical Details")
+                    const dropdownParent = link.closest('.dropdown');
+                    if (dropdownParent) {
+                        const dropbtn = dropdownParent.querySelector('.dropbtn');
+                        if (dropbtn) dropbtn.classList.add('active');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

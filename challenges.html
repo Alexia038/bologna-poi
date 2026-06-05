@@ -22,21 +22,30 @@
             <li><a href="topic.html">Project Topic</a></li>
             <li><a href="methodology.html">Methodology</a></li>
             <li><a href="ontology.html">Ontology Extension</a></li>
-            <!-- AICI ÎNCEPE GRUPAREA (DROPDOWN) -->
+            
+            <!-- DROPDOWN MAIN-->
             <li class="dropdown">
                 <a href="#" class="dropbtn">Technical Details ▾</a>
                 <div class="dropdown-content">
-                    <a href="sparql.html">SPARQL Queries</a>
+                    
+                    <!-- SUB-MENIU SPARQL -->
+                    <div class="nested-dropdown">
+                        <a href="#" class="nested-dropbtn">SPARQL ▸</a>
+                        <div class="nested-dropdown-content">
+                            <a href="sparql-poi.html">Query POI-AP_IT</a>
+                            <a href="sparql-bologna.html">Bologna POI</a>
+                        </div>
+                    </div>
+                    
                     <a href="llm.html">LLM Experiments</a>
                     <a href="rdf.html">RDF Triples</a>
                 </div>
             </li>
-            <!-- AICI SE TERMINĂ GRUPAREA 
-            <li><a href="sparql.html">SPARQL Queries</a></li>
-            <li><a href="llm.html">LLM Experiments</a></li>
-            <li><a href="rdf.html">RDF Triples</a></li> -->
+
             <li><a href="results.html">Results</a></li>
             <li><a href="challenges.html">Challenges</a></li>
+
+            <li class="lang-switch"><a href="en/challenges.html">EN</a></li>
         </ul>
     </nav>
 
@@ -48,11 +57,14 @@
             
             <p>Durante lo sviluppo del progetto sono emerse diverse difficoltà pratiche che hanno richiesto attività iterative di verifica e correzione.</p>
 
-            <!-- Lista cu provocări (curățată de tag-urile <br>) -->
             <ul class="challenges-list">
+
+                <li class="challenge-item">
+                    <strong>Costruzione del dataset integrato:</strong> La fase di unione delle diverse sorgenti open data ha richiesto particolare attenzione. Alcuni dataset presentavano nomi di colonne differenti per rappresentare informazioni analoghe, mentre altri contenevano dati geografici espressi in formati non uniformi. È stato quindi necessario effettuare operazioni di normalizzazione e armonizzazione prima di procedere alla generazione del Knowledge Graph finale.
+                </li>
                 
                 <li class="challenge-item">
-                    <strong>Costruzione dell'ontologia in Protégé:</strong> In una fase iniziale si sono verificati problemi nell'importazione e nella visualizzazione dell'ontologia estesa, poiché le classi definite localmente non risultavano immediatamente visibili all'interno della gerarchia ontologica. La risoluzione del problema ha richiesto una verifica degli IRI utilizzati, delle relazioni di importazione con l'ontologia nazionale POI-AP_IT e delle modalità di apertura e salvataggio dei file nei diversi formati supportati da Protégé.
+                    <strong>Gestione delle informazioni geografiche:</strong> I dataset utilizzati contenevano sia coordinate puntuali sia geometrie poligonali espresse tramite campi <code>GeoShape</code>. È stato quindi necessario definire una rappresentazione coerente di queste informazioni all'interno dell'ontologia, distinguendo tra coordinate geografiche e geometrie spaziali più complesse.
                 </li>
 
                 <li class="challenge-item">
@@ -60,7 +72,7 @@
                 </li>
 
                 <li class="challenge-item">
-                    <strong>Gestione delle informazioni geografiche:</strong> I dataset utilizzati contenevano sia coordinate puntuali sia geometrie poligonali espresse tramite campi <code>GeoShape</code>. È stato quindi necessario definire una rappresentazione coerente di queste informazioni all'interno dell'ontologia, distinguendo tra coordinate geografiche e geometrie spaziali più complesse.
+                    <strong>Costruzione dell'ontologia in Protégé e visualizzazione:</strong> In una fase iniziale si sono verificati problemi nell'importazione e nella visualizzazione dell'ontologia estesa, poiché le classi definite localmente non risultavano immediatamente visibili all'interno della gerarchia ontologica. La risoluzione del problema ha richiesto una verifica degli IRI utilizzati, delle relazioni di importazione con l'ontologia nazionale POI-AP_IT e delle modalità di apertura e salvataggio dei file nei diversi formati supportati da Protégé.
                 </li>
 
                 <li class="challenge-item">
@@ -68,8 +80,11 @@
                 </li>
 
                 <li class="challenge-item">
-                    <strong>Costruzione del dataset integrato:</strong> La fase di unione delle diverse sorgenti open data ha richiesto particolare attenzione. Alcuni dataset presentavano nomi di colonne differenti per rappresentare informazioni analoghe, mentre altri contenevano dati geografici espressi in formati non uniformi. È stato quindi necessario effettuare operazioni di normalizzazione e armonizzazione prima di procedere alla generazione del Knowledge Graph finale.
-                </li>
+                <strong>Verifica della consistenza semantica e dell'interrogabilità del grafo</strong>
+                La prima attività ha riguardato la verifica della consistenza semantica del grafo mediante il reasoner HermiT. Durante questa fase sono state rilevate alcune inconsistenze relative alla proprietà <code>POIID</code>, definita nell'ontologia nazionale con range <code>xsd:integer</code>. Nelle triple generate dal modello linguistico ChatGPT Plus, tuttavia, tale proprietà era stata valorizzata mediante stringhe descrittive (ad esempio <code>"Arredo urbano_0447"</code>), causando una violazione dei vincoli semantici previsti dall'ontologia. L'analisi delle spiegazioni fornite dal reasoner ha consentito di identificare rapidamente l'origine del problema e di correggere le triple non conformi. Dopo la rimozione dei valori incompatibili, il reasoner HermiT ha completato correttamente il processo di inferenza senza evidenziare ulteriori inconsistenze, confermando la consistenza del Knowledge Graph risultante.
+                <br><br>
+                Successivamente si è proceduto alla verifica dell'interrogabilità del grafo mediante query SPARQL. Inizialmente tale attività è stata svolta utilizzando il plugin SPARQL integrato in Protégé. Tuttavia, durante l'apertura della vista SPARQL sul Knowledge Graph popolato, il software ha generato errori di compatibilità legati al plugin di interrogazione, impedendo l'esecuzione delle query direttamente all'interno dell'ambiente Protégé e richiedendo l'adozione di strumenti alternativi.
+            </li>
 
             </ul>
 
@@ -77,22 +92,25 @@
 
     </main>
 
-    <!-- Aici începe FOOTER-ul (subsolul) -->
+    <!-- FOOTER -->
     <footer class="site-footer">
         <div class="footer-container">
             
-            <!-- Coloana 1: Informații despre proiect și echipă -->
+            <!-- Colon 1 -->
             <div class="footer-info">
                 <h3>Knowledge Graph Enrichment with LLMs</h3>
                 <p><strong>Corso:</strong> Metodi Semantici per la Trasformazione Digitale</p>
                 <p><strong>Anno Accademico:</strong> 2025/2026</p>
                 <p class="team-footer">
                     <strong>Gruppo di Progetto:</strong><br>
-                    Michela Di Campli, Alexia Dinescu, Sofia Mazzetti, Elena Paniccià
+                    Michela Di Campli, Alexia Dinescu, Sofia Mazzetti, Elena Paniccià<br>
+                    <a href="https://github.com/Alexia038/bologna-poi" target="_blank" class="text-link">Repository GitHub</a>
                 </p>
+                <p><strong>Report Overleaf:</strong></p>
+                <a href="https://it.overleaf.com/read/wbzwbjfmfwtc#99bb37" target="_blank" class="text-link">Knowledge Graph dei Punti di Interesse Urbani di Bologna</a>
             </div>
 
-            <!-- Coloana 2: Meniul vertical (Link-uri rapide) -->
+            <!-- Colon 2: Meniul vertical (Link-uri rapide) -->
             <div class="footer-links">
                 <h3>Esplora il Progetto</h3>
                 <ul>
@@ -100,39 +118,63 @@
                     <li><a href="topic.html">Argomento del Progetto</a></li>
                     <li><a href="methodology.html">Metodologia</a></li>
                     <li><a href="ontology.html">Estensione Ontologica</a></li>
-                    <li><a href="sparql.html">Query SPARQL</a></li>
+                    <li><a href="sparql-poi.html">SPARQL Query POI-AP_IT</a></li>
+                    <li><a href="sparql-bologna.html">SPARQL Query Bologna</a></li>
                     <li><a href="llm.html">Esperimenti LLM</a></li>
                     <li><a href="rdf.html">Triple RDF</a></li>
                     <li><a href="results.html">Risultati e Confronto</a></li>
                     <li><a href="challenges.html">Sfide e Conclusioni</a></li>
+
                 </ul>
             </div>
 
         </div>
         
-        <!-- Zona de jos (Copyright) -->
+        <!-- (Copyright) -->
         <div class="footer-bottom">
             <p>&copy; 2026 Alma Mater Studiorum - Università di Bologna. Tutti i diritti riservati.</p>
         </div>
     </footer>
 
-    <!-- SCRIPT PENTRU EFECTUL DE ÎNTRERUPĂTOR (TOGGLE) -->
+    <!-- SCRIPT TOGGLE -->
     <script>
-        // 2. Meniul Inteligent (Smart Dropdown)
+        // (Smart Dropdown)
         const dropdowns = document.querySelectorAll('.dropdown');
         dropdowns.forEach(dropdown => {
             dropdown.addEventListener('mouseenter', () => {
                 const content = dropdown.querySelector('.dropdown-content');
                 
-                // Obținem coordonatele butonului pe ecran
+                // coord
                 const rect = dropdown.getBoundingClientRect();
                 
-                // Verificăm cât spațiu (în pixeli) avem de la buton până la marginea de jos a ecranului.
-                // 150px este înălțimea aproximativă a listei tale derulante.
+                // pixel
+                // 150px height of dropdown
                 if (window.innerHeight - rect.bottom < 150) {
                     content.classList.add('drop-up'); // Nu e loc jos -> Deschide în SUS
                 } else {
                     content.classList.remove('drop-up'); // Este loc jos -> Deschide normal în JOS
+                }
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // current URL
+            const currentUrl = window.location.href;
+            
+            // select all nav links
+            const navLinks = document.querySelectorAll('.navigation-bar a');
+            
+            navLinks.forEach(link => {
+                // If the link address matches the current page address
+                if (link.href === currentUrl) {
+                    link.classList.add('active'); // Aprinde butonul
+                    
+                    // If the link is in the dropdown menu (e.g., SPARQL), also highlight the parent button ("Technical Details")
+                    const dropdownParent = link.closest('.dropdown');
+                    if (dropdownParent) {
+                        const dropbtn = dropdownParent.querySelector('.dropbtn');
+                        if (dropbtn) dropbtn.classList.add('active');
+                    }
                 }
             });
         });

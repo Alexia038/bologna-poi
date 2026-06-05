@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LLM Experiments - Bologna Urban POI Knowledge Graph</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <header class="compact-header header-llm">
+        <div class="compact-header-content">
+            <h1>Bologna Urban Points of Interest</h1>
+            <p>Knowledge Graph Enrichment with LLMs</p>
+        </div>
+    </header>
+
+    <nav id="main-menu" class="navigation-bar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="topic.html">Project Topic</a></li>
+            <li><a href="methodology.html">Methodology</a></li>
+            <li><a href="ontology.html">Ontology Extension</a></li>
+            
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Technical Details ▾</a>
+                <div class="dropdown-content">
+                    
+                    <div class="nested-dropdown">
+                        <a href="#" class="nested-dropbtn">SPARQL ▸</a>
+                        <div class="nested-dropdown-content">
+                            <a href="sparql-poi.html">Query POI-AP_IT</a>
+                            <a href="sparql-bologna.html">Bologna POI</a>
+                        </div>
+                    </div>
+                    
+                    <a href="llm.html">LLM Experiments</a>
+                    <a href="rdf.html">RDF Triples</a>
+                </div>
+            </li>
+
+            <li><a href="results.html">Results</a></li>
+            <li><a href="challenges.html">Challenges</a></li>
+
+            <li class="lang-switch"><a href="../llm.html">IT</a></li>
+        </ul>
+    </nav>
+
+    <main id="llm-content" class="container">
+        
+        <section id="llm-intro" class="content-section">
+            <h2>LLM Experiments & Prompting Techniques</h2>
+            
+            <p>Based on the integrated CSV file and the Turtle file of the local ontology created in Protégé, an automatic generation phase of RDF triples using Large Language Models (LLMs) was designed. In this phase, two models were compared, <strong>Gemini Pro</strong> and <strong>ChatGPT Plus</strong>, both tested through three different prompting techniques: <em>zero-shot</em>, <em>few-shot</em>, and <em>zero-shot chain-of-thought</em>.</p>
+
+            <h3 class="subsection-title">Technique 1 — Zero-Shot Prompting</h3>
+            <p>In the zero-shot technique, the model is provided only with the task instruction, without any examples of the expected output. The prompt used is the following:</p>
+<pre class="code-wide"><code>Generate valid RDF triples in Turtle format to describe the urban points of interest extracted from the dataset df_POI.csv, using our ontology.</code></pre>
+
+            <h3 class="subsection-title">Technique 2 — Few-Shot Prompting</h3>
+            <p>In the few-shot technique, along with the task instruction, the model is provided with some concrete examples of the expected RDF triples in order to guide its output. The prompt used is structured as follows:</p>
+<pre class="code-wide"><code>You are an expert in Semantic Web and Knowledge Graphs.
+Your task is to generate RDF triples from the attached CSV data, exclusively using classes and properties present in the provided ontology.
+
+Example triple 1
+Subject: POI with ID POI_001 -> bo:POI_001
+Predicate: bo:isUnderPortico
+Object: Portico with ID Portico_023 -> bo:Portico_023
+RDF Triple: bo:POI_001 bo:isUnderPortico bo:Portico_023 .
+
+Example triple 2
+Subject: Portico with ID Portico_023 -> bo:Portico_023
+Predicate: bo:hostsPOI
+Object: POI with ID POI_001 -> bo:POI_001
+RDF Triple: bo:Portico_023 bo:hostsPOI bo:POI_001 .
+
+Example triple 3
+Subject: POI with ID POI_045 -> bo:POI_045
+Predicate: bo:hasCoordinates
+Object: "44.4949,11.3426"
+RDF Triple: bo:POI_045 bo:hasCoordinates "44.4949,11.3426" .
+
+Example triple 4
+Subject: POI with ID POI_045 -> bo:POI_045
+Predicate: bo:hasDistrict
+Object: "Santo Stefano"
+RDF Triple: bo:POI_045 bo:hasDistrict "Santo Stefano" .</code></pre>
+
+            <h3 class="subsection-title">Technique 3 — Zero-Shot Chain-of-Thought Prompting</h3>
+            <p>In the zero-shot chain-of-thought technique, the model is instructed to reason explicitly and in a structured manner before producing the output, following a chain of thought defined in the prompt. No examples are provided, but the logical process to follow is specified:</p>
+<pre class="code-wide"><code>You are an expert in Semantic Web and Knowledge Graphs.
+Your task is to generate RDF triples (in Turtle syntax) from the data extracted from the file "df_POI 2.csv", exclusively using the classes and properties present in the ontology defined in the file "bologna_poi_corrected_2.ttl".
+
+For each row of the CSV provided to you, you must reason and proceed step by step following this precise chain of thought (Chain-of-Thought):
+
+1. SUBJECT AND CLASS IDENTIFICATION:
+Analyze the value of "ID_univoco" and "Tipologia POI". What is the correct URI for the subject? What is the most specific ontology class (rdf:type) to assign to it?
+
+2. PROPERTY EXTRACTION:
+Examine each populated column. Which ontology property semantically fits this data? What is the correct data type for the Literal?
+
+3. DOMAIN AND RANGE VERIFICATION:
+Check that the Subject belongs to the correct rdfs:domain of the property and that the Object respects the rdfs:range.
+
+Let's think step by step. Scan the entire provided CSV to identify all unique categories present in the Tipologia POI column.</code></pre>
+
+            <h3 class="subsection-title">Comparison of Performance Between LLMs</h3>
+            <p>To evaluate the performance of the language models employed, a qualitative comparison was made between the outputs generated by Gemini Pro and ChatGPT Plus across the different adopted prompting configurations.</p>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>LLM</th>
+                        <th>Strengths</th>
+                        <th>Observed Limitations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Gemini Pro</td>
+                        <td>Structured and descriptive outputs, with detailed explanations of the mapping process between dataset and ontology. Good semantic interpretation capacity, high level of detail in explanations.</td>
+                        <td>Tendency to produce demonstrative rather than complete outputs. In some cases, it fails to identify all categories present in the dataset and introduces unsolicited interpretations.</td>
+                    </tr>
+                    <tr>
+                        <td>ChatGPT Plus</td>
+                        <td>Outputs oriented towards the generation of RDF triples and the formalization of the ontological structure. Greater capacity to produce complete conversions of the dataset, good adherence to instructions.</td>
+                        <td>Lower level of detail in methodological explanations and less contextualization of the mapping process compared to Gemini Pro.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p class="centered-note"><em>To view practical examples of the RDF triples generated by the two models for each technique, please visit the section <strong><a href="rdf.html" class="text-link">RDF Triples ↗</a></strong>.</em></p>
+
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-info">
+                <h3>Knowledge Graph Enrichment with LLMs</h3>
+                <p><strong>Course:</strong> Metodi Semantici per la Trasformazione Digitale</p>
+                <p><strong>Academic Year:</strong> 2025/2026</p>
+                <p class="team-footer">
+                    <strong>Project Group:</strong><br>
+                    Michela Di Campli, Alexia Dinescu, Sofia Mazzetti, Elena Paniccià<br>
+                    <a href="https://github.com/Alexia038/bologna-poi" target="_blank" class="text-link">Repository GitHub</a>
+                </p>
+                <p><strong>Report Overleaf:</strong></p>
+                <a href="https://it.overleaf.com/read/wbzwbjfmfwtc#99bb37" target="_blank" class="text-link">Knowledge Graph dei Punti di Interesse Urbani di Bologna</a>
+            </div>
+            <div class="footer-links">
+                <h3>Explore the Project</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="topic.html">Project Topic</a></li>
+                    <li><a href="methodology.html">Methodology</a></li>
+                    <li><a href="ontology.html">Ontology Extension</a></li>
+                    <li><a href="sparql-poi.html">SPARQL Query POI-AP_IT</a></li>
+                    <li><a href="sparql-bologna.html">SPARQL Query Bologna</a></li>
+                    <li><a href="llm.html">LLM Experiments</a></li>
+                    <li><a href="rdf.html">RDF Triples</a></li>
+                    <li><a href="results.html">Results and Comparison</a></li>
+                    <li><a href="challenges.html">Challenges and Conclusions</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Alma Mater Studiorum - University of Bologna. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Smart Dropdown Menu
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('mouseenter', () => {
+                const content = dropdown.querySelector('.dropdown-content');
+                
+                // Get the coordinates of the button on the screen
+                const rect = dropdown.getBoundingClientRect();
+                
+                // Check how much space (in pixels) we have from the button to the bottom edge of the screen.
+                if (window.innerHeight - rect.bottom < 150) {
+                    content.classList.add('drop-up'); // No room below -> Open UPWARDS
+                } else {
+                    content.classList.remove('drop-up'); // There is room below -> Open normally DOWNWARDS
+                }
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // Get the URL of the current page
+            const currentUrl = window.location.href;
+            
+            // Select all links from the navigation bar
+            const navLinks = document.querySelectorAll('.navigation-bar a');
+            
+            navLinks.forEach(link => {
+                // If the link address matches the current page address
+                if (link.href === currentUrl) {
+                    link.classList.add('active'); // Highlight the button
+                    
+                    // If the link is in the dropdown menu (e.g., SPARQL), also highlight the parent button ("Technical Details")
+                    const dropdownParent = link.closest('.dropdown');
+                    if (dropdownParent) {
+                        const dropbtn = dropdownParent.querySelector('.dropbtn');
+                        if (dropbtn) dropbtn.classList.add('active');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

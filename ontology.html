@@ -7,7 +7,7 @@
 </head>
 <body>
 
-    <!-- COMPACT HEADER ANIMAT -->
+    <!-- COMPACT HEADER  -->
     <header class="compact-header header-ontology">
         <div class="compact-header-content">
             <h1>Bologna Urban Points of Interest</h1>
@@ -22,23 +22,32 @@
             <li><a href="topic.html">Project Topic</a></li>
             <li><a href="methodology.html">Methodology</a></li>
             <li><a href="ontology.html">Ontology Extension</a></li>
-            <!-- AICI ÎNCEPE GRUPAREA (DROPDOWN) -->
+            
+            <!-- DROPDOWN TEHNICE -->
             <li class="dropdown">
                 <a href="#" class="dropbtn">Technical Details ▾</a>
                 <div class="dropdown-content">
-                    <a href="sparql.html">SPARQL Queries</a>
+                    
+                    <!-- SUB-MENIU SPARQL -->
+                    <div class="nested-dropdown">
+                        <a href="#" class="nested-dropbtn">SPARQL ▸</a>
+                        <div class="nested-dropdown-content">
+                            <a href="sparql-poi.html">Query POI-AP_IT</a>
+                            <a href="sparql-bologna.html">Bologna POI</a>
+                        </div>
+                    </div>
+                    
                     <a href="llm.html">LLM Experiments</a>
                     <a href="rdf.html">RDF Triples</a>
                 </div>
             </li>
-            <!-- AICI SE TERMINĂ GRUPAREA 
-            <li><a href="sparql.html">SPARQL Queries</a></li>
-            <li><a href="llm.html">LLM Experiments</a></li>
-            <li><a href="rdf.html">RDF Triples</a></li> -->
+
             <li><a href="results.html">Results</a></li>
             <li><a href="challenges.html">Challenges</a></li>
+
+            <li class="lang-switch"><a href="en/ontology.html">EN</a></li>
         </ul>
-    </nav>
+    </nav>>
 
     <!-- MAIN CONTENT: Ontology Extension -->
     <main id="ontology-content" class="container">
@@ -49,7 +58,7 @@
             <h3>Proposta di estensione ontologica locale in Protégé</h3>
             
             <!-- PARTEA 1 -->
-            <p>A seguito dell'analisi dell'ontologia nazionale POI-AP_IT e del confronto con i dataset open data del Comune di Bologna, è emersa la necessità di estendere il vocabolario esistente al fine di rappresentare alcune categorie di punti di interesse urbani non esplicitamente modellate nell'ontologia di riferimento. Per questo motivo è stata progettata e implementata, mediante l'editor Protégé, un'ontologia locale denominata <em>bologna-poi</em>, identificata dall'IRI <a href="http://dati.comune.bologna.it/ontology/bologna-poi" target="_blank" class="text-link">http://dati.comune.bologna.it/ontology/bologna-poi</a> e basata sul riuso dei concetti definiti nell'ontologia nazionale.</p>
+            <p>A seguito dell'analisi dell'ontologia nazionale POI-AP_IT e del confronto con i dataset open data del Comune di Bologna, è emersa la <strong>necessità di estendere il vocabolario esistente</strong> al fine di rappresentare alcune categorie di <strong>punti di interesse urbani</strong> non esplicitamente modellate nell'ontologia di riferimento. Per questo motivo è stata progettata e implementata, mediante l'editor Protégé, un'<strong>ontologia locale</strong> denominata <strong><em>bologna-poi</em></strong>, identificata dall'IRI <a href="http://dati.comune.bologna.it/ontology/bologna-poi" target="_blank" class="text-link">http://dati.comune.bologna.it/ontology/bologna-poi</a> e basata sul riuso dei concetti definiti nell'ontologia nazionale.</p>
 
             <p>L'estensione è stata realizzata seguendo un approccio incrementale e conservativo, volto a garantire la massima interoperabilità con il modello nazionale. In particolare, è stata introdotta la classe <code>BolognaUrbanPointOfInterest</code>, definita come sottoclasse di <code>PointOfInterest</code>, con il ruolo di superclasse locale per la rappresentazione dei punti di interesse urbani della città di Bologna.</p>
 
@@ -62,18 +71,18 @@
 
             <p>Particolare attenzione è stata dedicata anche alla modellazione delle relazioni semantiche tra le entità. A tale scopo sono state introdotte due object properties specifiche. La proprietà <code>hostsPOI</code> è stata definita per rappresentare il fatto che un <code>Portico</code> possa ospitare uno o più punti di interesse urbani. Il dominio della proprietà è stato quindi associato alla classe <code>Portico</code>, mentre il range è stato definito come <code>BolognaUrbanPointOfInterest</code>. In modo complementare, è stata introdotta la proprietà <code>isUnderPortico</code>, utilizzata per esprimere la relazione inversa dal punto di interesse verso il portico sotto il quale esso è collocato. Questa scelta consente di rappresentare esplicitamente una caratteristica distintiva del contesto urbano bolognese, valorizzando il ruolo dei portici come elemento strutturale e spaziale della città.</p>
 
-            <p>L'ontologia risultante costituisce quindi un'estensione locale del modello nazionale, capace di preservarne la compatibilità semantica e, allo stesso tempo, di fornire una rappresentazione più dettagliata e aderente alle caratteristiche dei punti di interesse urbani presenti nel territorio comunale di Bologna.</p>
+            <p>L'ontologia risultante costituisce quindi un'<strong>estensione locale del modello nazionale</strong>, capace di preservarne la compatibilità semantica e, allo stesso tempo, di fornire una rappresentazione più dettagliata e aderente alle caratteristiche dei punti di interesse urbani presenti nel territorio comunale di Bologna.</p>
 
-            <!-- IMAGINEA ONTOLOGIEI (INLOCUIEȘTE NOTA TA) -->
+            <!-- IMAGINE  -->
             <div class="query-result-image">
                 <img src="images/Ontology_image.jpg" alt="Struttura dell'ontologia locale bologna-poi">
-                <p class="figure-caption">Figura 5: Struttura dell'ontologia locale bologna-poi e relazioni con l'ontologia nazionale POI-AP_IT.</p>
+                <p class="figure-caption">Struttura dell'ontologia locale bologna-poi e relazioni con l'ontologia nazionale POI-AP_IT</p>
             </div>
 
         </section>
     </main>
 
-    <!-- FOOTER MODERN ȘI COMPLET -->
+    <!-- FOOTER MODERN -->
     <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-info">
@@ -82,8 +91,11 @@
                 <p><strong>Anno Accademico:</strong> 2025/2026</p>
                 <p class="team-footer">
                     <strong>Gruppo di Progetto:</strong><br>
-                    Michela Di Campli, Alexia Dinescu, Sofia Mazzetti, Elena Paniccià
+                    Michela Di Campli, Alexia Dinescu, Sofia Mazzetti, Elena Paniccià<br>
+                    <a href="https://github.com/Alexia038/bologna-poi" target="_blank" class="text-link">Repository GitHub</a>
                 </p>
+                <p><strong>Report Overleaf:</strong></p>
+                <a href="https://it.overleaf.com/read/wbzwbjfmfwtc#99bb37" target="_blank" class="text-link">Knowledge Graph dei Punti di Interesse Urbani di Bologna</a>
             </div>
             <div class="footer-links">
                 <h3>Esplora il Progetto</h3>
@@ -92,7 +104,8 @@
                     <li><a href="topic.html">Argomento del Progetto</a></li>
                     <li><a href="methodology.html">Metodologia</a></li>
                     <li><a href="ontology.html">Estensione Ontologica</a></li>
-                    <li><a href="sparql.html">Query SPARQL</a></li>
+                    <li><a href="sparql-poi.html">SPARQL Query POI-AP_IT</a></li>
+                    <li><a href="sparql-bologna.html">SPARQL Query Bologna</a></li>
                     <li><a href="llm.html">Esperimenti LLM</a></li>
                     <li><a href="rdf.html">Triple RDF</a></li>
                     <li><a href="results.html">Risultati e Confronto</a></li>
@@ -105,23 +118,45 @@
         </div>
     </footer>
 
-    <!-- SCRIPT PENTRU EFECTUL DE ÎNTRERUPĂTOR (TOGGLE) -->
+    <!-- SCRIPT TOGGLE) -->
     <script>      
-        // 2. Meniul Inteligent (Smart Dropdown)
+        // 2. Smart Dropdown)
         const dropdowns = document.querySelectorAll('.dropdown');
         dropdowns.forEach(dropdown => {
             dropdown.addEventListener('mouseenter', () => {
                 const content = dropdown.querySelector('.dropdown-content');
                 
-                // Obținem coordonatele butonului pe ecran
+                // Get the coordinates of the button on the screen
                 const rect = dropdown.getBoundingClientRect();
                 
-                // Verificăm cât spațiu (în pixeli) avem de la buton până la marginea de jos a ecranului.
-                // 150px este înălțimea aproximativă a listei tale derulante.
+                // Check how much space (in pixels) we have from the button to the bottom edge of the screen.
+                // 150px is the approximate height of your dropdown list.
                 if (window.innerHeight - rect.bottom < 150) {
-                    content.classList.add('drop-up'); // Nu e loc jos -> Deschide în SUS
+                    content.classList.add('drop-up'); // No room below -> Open UPWARDS
                 } else {
-                    content.classList.remove('drop-up'); // Este loc jos -> Deschide normal în JOS
+                    content.classList.remove('drop-up'); // There is room below -> Open normally downwards
+                }
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // Get the URL of the current page
+            const currentUrl = window.location.href;
+            
+            // Select all navigation links
+            const navLinks = document.querySelectorAll('.navigation-bar a');
+            
+            navLinks.forEach(link => {
+                // If the link address matches the current page address
+                if (link.href === currentUrl) {
+                    link.classList.add('active'); // Highlight the button
+                    
+                    // If the link is in the dropdown menu (e.g., SPARQL), also highlight the parent button ("Technical Details")
+                    const dropdownParent = link.closest('.dropdown');
+                    if (dropdownParent) {
+                        const dropbtn = dropdownParent.querySelector('.dropbtn');
+                        if (dropbtn) dropbtn.classList.add('active');
+                    }
                 }
             });
         });

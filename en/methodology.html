@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Methodology - Bologna Urban POI Knowledge Graph</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 
-    <!-- COMPACT HEADER-->
     <header class="compact-header header-methodology">
         <div class="compact-header-content">
             <h1>Bologna Urban Points of Interest</h1>
@@ -15,7 +14,6 @@
         </div>
     </header>
 
-    <!-- NAVIGATION-->
     <nav id="main-menu" class="navigation-bar">
         <ul>
             <li><a href="index.html">Home</a></li>
@@ -23,12 +21,10 @@
             <li><a href="methodology.html">Methodology</a></li>
             <li><a href="ontology.html">Ontology Extension</a></li>
             
-            <!-- DROPDOWN TEHNICE -->
             <li class="dropdown">
                 <a href="#" class="dropbtn">Technical Details ▾</a>
                 <div class="dropdown-content">
                     
-                    <!-- SUB-MENIU SPARQL -->
                     <div class="nested-dropdown">
                         <a href="#" class="nested-dropbtn">SPARQL ▸</a>
                         <div class="nested-dropdown-content">
@@ -45,53 +41,50 @@
             <li><a href="results.html">Results</a></li>
             <li><a href="challenges.html">Challenges</a></li>
 
-            <li class="lang-switch"><a href="en/methodology.html">EN</a></li>
+            <li class="lang-switch"><a href="../methodology.html">IT</a></li>
         </ul>
     </nav>
 
 
-    <!-- MAIN CONTENT: Methodology -->
     <main id="methodology-content" class="container">
         
         <section id="methodology-intro" class="content-section">
             <h2>Methodology</h2>
-            <p>La metodologia adottata è stata articolata in una serie di fasi:</p>
+            <p>The adopted methodology was structured into a series of phases:</p>
             
-            <!-- Am scos tag-urile <br> pentru a controla spațierea pur din CSS -->
             <ol class="methodology-phases">
                 <li class="phase">
-                    <strong>Prima fase:</strong> Ha previsto l'esplorazione dell'ontologia nazionale dei punti di interesse attraverso le keywords di SPARQL richieste per la stesura del progetto (<em>OPTIONAL, DISTINCT, UNION, FILTER and REGEX, LIMIT, ORDER BY</em>); in parallelo, sono stati pre-processati i dataset messi a disposizione dal Comune di Bologna, tramite linguaggio Python sulla piattaforma Google Colab.
+                    <strong>First phase:</strong> Involved the exploration of the national ontology of points of interest using the SPARQL keywords required for the project drafting (<em>OPTIONAL, DISTINCT, UNION, FILTER and REGEX, LIMIT, ORDER BY</em>); in parallel, the datasets made available by the Municipality of Bologna were pre-processed using Python on the Google Colab platform.
                 </li>
                 
                 <li class="phase">
-                    <strong>Seconda fase:</strong> È stata estesa l'ontologia nazionale con un'ontologia locale dedicata ai punti di interesse urbani di Bologna, sviluppata mediante la piattaforma Protégé.
+                    <strong>Second phase:</strong> The national ontology was extended with a local ontology dedicated to the urban points of interest of Bologna, developed using the Protégé platform.
                 </li>
                 
                 <li class="phase">
-                    <strong>Terza fase:</strong> A partire dal CSV integrato e dal file Turtle dell'ontologia locale, sono stati confrontati <strong>Gemini Pro</strong> e <strong>ChatGPT Plus</strong> mediante tre diverse tecniche di prompting, con l'obiettivo di generare triple RDF coerenti con il modello ontologico; successivamente sono state comparate e discusse le prestazioni dei diversi modelli LLM.
+                    <strong>Third phase:</strong> Starting from the integrated CSV and the Turtle file of the local ontology, <strong>Gemini Pro</strong> and <strong>ChatGPT Plus</strong> were compared using three different prompting techniques, aiming to generate RDF triples consistent with the ontological model; subsequently, the performances of the different LLM models were compared and discussed.
                 </li>
 
                 <li class="phase">
-                    <strong>Quarta fase:</strong> Ha previsto l'integrazione delle triple RDF generate all'interno dell'ontologia locale, la validazione della consistenza del Knowledge Graph mediante reasoning automatico e la successiva interrogazione tramite SPARQL per verificare la corretta rappresentazione delle informazioni.
+                    <strong>Fourth phase:</strong> Involved the integration of the generated RDF triples within the local ontology, the validation of the Knowledge Graph's consistency through automated reasoning, and the subsequent querying via SPARQL to verify the correct representation of the information.
                 </li>
                 
                 <li class="phase">
-                    <strong>Ultima fase:</strong> È stato realizzato il sito web del progetto, pubblicato su <a href="https://github.com/Alexia038/bologna-poi.git" target="_blank" class="text-link">GitHub</a> e destinato a presentare metodologia, query, prompt e risultati ottenuti.
+                    <strong>Final phase:</strong> The project website was created, published on <a href="https://github.com/Alexia038/bologna-poi.git" target="_blank" class="text-link">GitHub</a>, and designed to present the methodology, queries, prompts, and obtained results.
                 </li>
             </ol>
         </section>
 
     </main>
 
-    <!-- FOOTER MODERN -->
     <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-info">
                 <h3>Knowledge Graph Enrichment with LLMs</h3>
-                <p><strong>Corso:</strong> Metodi Semantici per la Trasformazione Digitale</p>
-                <p><strong>Anno Accademico:</strong> 2025/2026</p>
+                <p><strong>Course:</strong> Metodi Semantici per la Trasformazione Digitale</p>
+                <p><strong>Academic Year:</strong> 2025/2026</p>
                 <p class="team-footer">
-                    <strong>Gruppo di Progetto:</strong><br>
+                    <strong>Project Group:</strong><br>
                     Michela Di Campli, Alexia Dinescu, Sofia Mazzetti, Elena Paniccià<br>
                     <a href="https://github.com/Alexia038/bologna-poi" target="_blank" class="text-link">Repository GitHub</a>
                 </p>
@@ -99,29 +92,28 @@
                 <a href="https://it.overleaf.com/read/wbzwbjfmfwtc#99bb37" target="_blank" class="text-link">Knowledge Graph dei Punti di Interesse Urbani di Bologna</a>
             </div>
             <div class="footer-links">
-                <h3>Esplora il Progetto</h3>
+                <h3>Explore the Project</h3>
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="topic.html">Argomento del Progetto</a></li>
-                    <li><a href="methodology.html">Metodologia</a></li>
-                    <li><a href="ontology.html">Estensione Ontologica</a></li>
+                    <li><a href="topic.html">Project Topic</a></li>
+                    <li><a href="methodology.html">Methodology</a></li>
+                    <li><a href="ontology.html">Ontology Extension</a></li>
                     <li><a href="sparql-poi.html">SPARQL Query POI-AP_IT</a></li>
                     <li><a href="sparql-bologna.html">SPARQL Query Bologna</a></li>
-                    <li><a href="llm.html">Esperimenti LLM</a></li>
-                    <li><a href="rdf.html">Triple RDF</a></li>
-                    <li><a href="results.html">Risultati e Confronto</a></li>
-                    <li><a href="challenges.html">Sfide e Conclusioni</a></li>
+                    <li><a href="llm.html">LLM Experiments</a></li>
+                    <li><a href="rdf.html">RDF Triples</a></li>
+                    <li><a href="results.html">Results and Comparison</a></li>
+                    <li><a href="challenges.html">Challenges and Conclusions</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Alma Mater Studiorum - Università di Bologna. Tutti i diritti riservati.</p>
+            <p>&copy; 2026 Alma Mater Studiorum - University of Bologna. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- SCRIPT TOGGLE) -->
     <script>
-        // 2. Smart Dropdown)
+        // Smart Dropdown Menu
         const dropdowns = document.querySelectorAll('.dropdown');
         dropdowns.forEach(dropdown => {
             dropdown.addEventListener('mouseenter', () => {
@@ -131,11 +123,10 @@
                 const rect = dropdown.getBoundingClientRect();
                 
                 // Check how much space (in pixels) we have from the button to the bottom edge of the screen.
-                // 150px is the approximate height of your dropdown list.
                 if (window.innerHeight - rect.bottom < 150) {
                     content.classList.add('drop-up'); // No room below -> Open UPWARDS
                 } else {
-                    content.classList.remove('drop-up'); // There is room below -> Open normally downwards
+                    content.classList.remove('drop-up'); // There is room below -> Open normally DOWNWARDS
                 }
             });
         });
@@ -144,7 +135,7 @@
             // Get the URL of the current page
             const currentUrl = window.location.href;
             
-            // Select all navigation links
+            // Select all links from the navigation bar
             const navLinks = document.querySelectorAll('.navigation-bar a');
             
             navLinks.forEach(link => {

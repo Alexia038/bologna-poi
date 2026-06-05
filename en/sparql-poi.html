@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>SPARQL Queries - Bologna Urban POI Knowledge Graph</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 
-    <!-- COMPACT HEADER ANIMAT PENTRU CHALLENGES -->
     <header class="compact-header header-sparql-poi">
         <div class="compact-header-content">
             <h1>SPARQL Query POI-AP_IT</h1>
@@ -15,8 +14,6 @@
         </div>
     </header>
 
-    <!-- NAVIGATION: The menu that stays exactly the same across all pages -->
-    <!-- MENIUL PRINCIPAL -->
     <nav id="main-menu" class="navigation-bar">
         <ul>
             <li><a href="index.html">Home</a></li>
@@ -24,12 +21,10 @@
             <li><a href="methodology.html">Methodology</a></li>
             <li><a href="ontology.html">Ontology Extension</a></li>
             
-            <!-- DROPDOWN PRINCIPAL PENTRU DETALII TEHNICE -->
             <li class="dropdown">
                 <a href="#" class="dropbtn">Technical Details ▾</a>
                 <div class="dropdown-content">
                     
-                    <!-- SUB-MENIU LATERAL PENTRU SPARQL -->
                     <div class="nested-dropdown">
                         <a href="#" class="nested-dropbtn">SPARQL ▸</a>
                         <div class="nested-dropdown-content">
@@ -46,21 +41,19 @@
             <li><a href="results.html">Results</a></li>
             <li><a href="challenges.html">Challenges</a></li>
 
-            <li class="lang-switch"><a href="en/sparql-poi.html">EN</a></li>
+            <li class="lang-switch"><a href="../sparql-poi.html">IT</a></li>
         </ul>
     </nav>
 
-<!-- MAIN CONTENT: SPARQL Queries -->
     <main id="sparql-content" class="container">
         
         <section id="queries-intro" class="content-section">
             <h2>SPARQL Queries</h2>
             
-            <p>In questa sezione vengono riportati alcuni esempi di query SPARQL utilizzate per l'esplorazione dell'ontologia nazionale POI-AP_IT.</p>
+            <p>In this section, several examples of SPARQL queries used for the exploration of the national POI-AP_IT ontology are presented.</p>
 
-            <!-- QUERY 1 -->
-            <h3 class="subsection-title">Esplorazione generale dell'ontologia POI-AP_IT</h3>
-            <p>La seguente query è stata utilizzata per ottenere una vista generale delle risorse appartenenti all'ontologia POI-AP_IT, interrogando l'endpoint nazionale e filtrando i soggetti sul namespace dell'ontologia:</p>
+            <h3 class="subsection-title">General Exploration of the POI-AP_IT Ontology</h3>
+            <p>The following query was used to obtain a general view of the resources belonging to the POI-AP_IT ontology, querying the national endpoint and filtering the subjects on the ontology's namespace:</p>
 
 <pre class="code-wide"><code>PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
 
@@ -72,18 +65,17 @@ WHERE {
 LIMIT 100
 </code></pre>
 
-            <p>Questa query utilizza <strong>DISTINCT</strong> per evitare duplicati e <strong>FILTER</strong> per restringere il dominio alle sole risorse dell'ontologia POI-AP_IT, restituendo un campione delle triple disponibili (limitato a 100 risultati).</p>
+            <p>This query uses <strong>DISTINCT</strong> to avoid duplicates and <strong>FILTER</strong> to restrict the domain only to the resources of the POI-AP_IT ontology, returning a sample of the available triples (limited to 100 results).</p>
 
             <div class="query-result-image">
-                <img src="images/Query1.png" alt="Risultati della query per l'esplorazione generale di POI-AP_IT">
-                <p class="figure-caption">Risultati della query per l'esplorazione generale di POI-AP_IT</p>
+                <img src="../images/Query1.png" alt="Query results for the general exploration of POI-AP_IT">
+                <p class="figure-caption">Query results for the general exploration of POI-AP_IT</p>
             </div>
 
             <hr class="section-divider">
 
-            <!-- QUERY 2 -->
-            <h3 class="subsection-title">Individuazione delle classi disponibili</h3>
-            <p>Per identificare le classi definite dall'ontologia POI-AP_IT e raccoglierne informazioni descrittive (etichette e commenti) è stata utilizzata la seguente query:</p>
+            <h3 class="subsection-title">Identification of Available Classes</h3>
+            <p>To identify the classes defined by the POI-AP_IT ontology and gather descriptive information (labels and comments), the following query was used:</p>
 
 <pre class="code-wide"><code>PREFIX owl:  &lt;http://www.w3.org/2002/07/owl#&gt;
 PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
@@ -101,18 +93,17 @@ ORDER BY ?class
 LIMIT 100
 </code></pre>
 
-            <p>In questo caso, <strong>OPTIONAL</strong> viene utilizzato per recuperare etichette e commenti quando disponibili, senza escludere le classi che ne sono prive, mentre <strong>ORDER BY</strong> consente di ordinare le classi per IRI, facilitandone la consultazione. La query ha permesso di identificare le classi riutilizzabili nel progetto e di documentarne il significato semantico prima di proporre un'estensione locale.</p>
+            <p>In this case, <strong>OPTIONAL</strong> is used to retrieve labels and comments when available, without excluding classes that lack them, while <strong>ORDER BY</strong> allows sorting the classes by IRI, facilitating their consultation. The query made it possible to identify the reusable classes in the project and document their semantic meaning before proposing a local extension.</p>
 
             <div class="query-result-image">
-                <img src="images/Query2.png" alt="Risultati della query per l'individuazione delle classi disponibili in POI-AP_IT">
-                <p class="figure-caption">Risultati della query per l'individuazione delle classi disponibili in POI-AP_IT</p>
+                <img src="../images/Query2.png" alt="Query results for identifying the available classes in POI-AP_IT">
+                <p class="figure-caption">Query results for identifying the available classes in POI-AP_IT</p>
             </div>
 
             <hr class="section-divider">
 
-            <!-- QUERY 3 -->
-            <h3 class="subsection-title">Individuazione delle proprietà riutilizzabili</h3>
-            <p>Per analizzare le proprietà definite in POI-AP_IT (sia <code>owl:ObjectProperty</code> sia <code>owl:DatatypeProperty</code>) è stata impiegata la seguente query:</p>
+            <h3 class="subsection-title">Identification of Reusable Properties</h3>
+            <p>To analyze the properties defined in POI-AP_IT (both <code>owl:ObjectProperty</code> and <code>owl:DatatypeProperty</code>), the following query was employed:</p>
 
 <pre class="code-wide"><code>PREFIX owl:  &lt;http://www.w3.org/2002/07/owl#&gt;
 PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
@@ -133,18 +124,17 @@ ORDER BY ?property
 LIMIT 100
 </code></pre>
 
-            <p><strong>FILTER</strong> viene utilizzato sia per filtrare il tipo della proprietà (<code>ObjectProperty</code> o <code>DatatypeProperty</code>), sia per delimitare il namespace di interesse, mentre le clausole <strong>OPTIONAL</strong> consentono di recuperare metadati utili per il riuso (dominio, range, etichette, commenti). Questa query è stata fondamentale per selezionare le proprietà da riutilizzare nel mapping dei dataset bolognesi, evitando la definizione ridondante di proprietà locali.</p>
+            <p><strong>FILTER</strong> is used both to filter the type of property (<code>ObjectProperty</code> or <code>DatatypeProperty</code>) and to delimit the namespace of interest, while the <strong>OPTIONAL</strong> clauses allow retrieving metadata useful for reuse (domain, range, labels, comments). This query was fundamental for selecting the properties to reuse in mapping the Bolognese datasets, avoiding the redundant definition of local properties.</p>
 
             <div class="query-result-image">
-                <img src="images/Query3.png" alt="Risultati della query per l'individuazione delle proprietà riutilizzabili di POI-AP_IT">
-                <p class="figure-caption">Risultati della query per l'individuazione delle proprietà riutilizzabili di POI-AP_IT</p>
+                <img src="../images/Query3.png" alt="Query results for identifying the reusable properties of POI-AP_IT">
+                <p class="figure-caption">Query results for identifying the reusable properties of POI-AP_IT</p>
             </div>
 
             <hr class="section-divider">
 
-            <!-- QUERY 4 -->
-            <h3 class="subsection-title">Ricerca di concetti potenzialmente rilevanti per Bologna</h3>
-            <p>Per verificare l'eventuale presenza, nell'ontologia nazionale, di concetti relativi ai servizi urbani bolognesi o ad elementi di arredo urbano, è stata definita una query che combina più pattern e fa uso di <strong>REGEX</strong>:</p>
+            <h3 class="subsection-title">Search for Concepts Potentially Relevant to Bologna</h3>
+            <p>To verify the possible presence, within the national ontology, of concepts related to Bolognese urban services or items of urban furniture, a query was defined that combines multiple patterns and makes use of <strong>REGEX</strong>:</p>
 
 <pre class="code-wide"><code>PREFIX owl:  &lt;http://www.w3.org/2002/07/owl#&gt;
 PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
@@ -187,28 +177,26 @@ ORDER BY ?type ?resource
 LIMIT 100
 </code></pre>
 
-            <p>La query utilizza <strong>UNION</strong> per considerare contemporaneamente classi, object property e datatype property, e filtra i risultati tramite più espressioni regolari su IRI, etichette, commenti e descrizioni, con l'obiettivo di intercettare qualsiasi risorsa che contenga riferimenti a Bologna, TPER, arredo urbano, bagni, parcheggi o portici. I risultati hanno confermato l'assenza di un supporto specifico per molte delle categorie urbane di interesse, motivando la progettazione di un'estensione ontologica locale.</p>
+            <p>The query uses <strong>UNION</strong> to simultaneously consider classes, object properties, and datatype properties, and filters the results through multiple regular expressions on IRIs, labels, comments, and descriptions, aiming to intercept any resource containing references to Bologna, TPER, urban furniture, toilets, parking lots, or porticoes. The results confirmed the absence of specific support for many of the urban categories of interest, motivating the design of a local ontological extension.</p>
 
             <div class="query-result-image">
-                <img src="images/Query4.png" alt="Risultati della query per la ricerca di concetti rilevanti per Bologna">
-                <p class="figure-caption">Risultati della query per la ricerca di concetti rilevanti per Bologna</p>
+                <img src="../images/Query4.png" alt="Query results for the search of concepts relevant to Bologna">
+                <p class="figure-caption">Query results for the search of concepts relevant to Bologna</p>
             </div>
 
         </section>
 
     </main>
 
-    <!-- FOOTER- -->
     <footer class="site-footer">
         <div class="footer-container">
             
-            <!-- Coloana 1 -->
             <div class="footer-info">
                 <h3>Knowledge Graph Enrichment with LLMs</h3>
-                <p><strong>Corso:</strong> Metodi Semantici per la Trasformazione Digitale</p>
-                <p><strong>Anno Accademico:</strong> 2025/2026</p>
+                <p><strong>Course:</strong> Semantic Methods for Digital Transformation</p>
+                <p><strong>Academic Year:</strong> 2025/2026</p>
                 <p class="team-footer">
-                    <strong>Gruppo di Progetto:</strong><br>
+                    <strong>Project Group:</strong><br>
                     Michela Di Campli, Alexia Dinescu, Sofia Mazzetti, Elena Paniccià<br>
                     <a href="https://github.com/Alexia038/bologna-poi" target="_blank" class="text-link">Repository GitHub</a>
                 </p>
@@ -216,34 +204,31 @@ LIMIT 100
                 <a href="https://it.overleaf.com/read/wbzwbjfmfwtc#99bb37" target="_blank" class="text-link">Knowledge Graph dei Punti di Interesse Urbani di Bologna</a>
             </div>
 
-            <!-- Coloana 2 -->
             <div class="footer-links">
-                <h3>Esplora il Progetto</h3>
+                <h3>Explore the Project</h3>
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="topic.html">Argomento del Progetto</a></li>
-                    <li><a href="methodology.html">Metodologia</a></li>
-                    <li><a href="ontology.html">Estensione Ontologica</a></li>
+                    <li><a href="topic.html">Project Topic</a></li>
+                    <li><a href="methodology.html">Methodology</a></li>
+                    <li><a href="ontology.html">Ontology Extension</a></li>
                     <li><a href="sparql-poi.html">SPARQL Query POI-AP_IT</a></li>
                     <li><a href="sparql-bologna.html">SPARQL Query Bologna</a></li>
-                    <li><a href="llm.html">Esperimenti LLM</a></li>
-                    <li><a href="rdf.html">Triple RDF</a></li>
-                    <li><a href="results.html">Risultati e Confronto</a></li>
-                    <li><a href="challenges.html">Sfide e Conclusioni</a></li>
+                    <li><a href="llm.html">LLM Experiments</a></li>
+                    <li><a href="rdf.html">RDF Triples</a></li>
+                    <li><a href="results.html">Results and Comparison</a></li>
+                    <li><a href="challenges.html">Challenges and Conclusions</a></li>
                 </ul>
             </div>
 
         </div>
         
-        <!-- Copyright) -->
         <div class="footer-bottom">
-            <p>&copy; 2026 Alma Mater Studiorum - Università di Bologna. Tutti i diritti riservati.</p>
+            <p>&copy; 2026 Alma Mater Studiorum - University of Bologna. All rights reserved.</p>
         </div>
     </footer>
     
-    <!-- SCRIPT TOGGLE) -->
     <script>
-        // 2. Meniul Inteligent (Smart Dropdown)
+        // 2. Smart Dropdown Menu
         const dropdowns = document.querySelectorAll('.dropdown');
         dropdowns.forEach(dropdown => {
             dropdown.addEventListener('mouseenter', () => {
@@ -257,7 +242,7 @@ LIMIT 100
                 if (window.innerHeight - rect.bottom < 150) {
                     content.classList.add('drop-up'); // No room below -> Open UPWARDS
                 } else {
-                    content.classList.remove('drop-up'); // There is room below -> Open normally downwards
+                    content.classList.remove('drop-up'); // There is room below -> Open normally DOWNWARDS
                 }
             });
         });
@@ -266,6 +251,7 @@ LIMIT 100
             // Get the URL of the current page
             const currentUrl = window.location.href;
             
+            // Select all links from the navigation bar
             const navLinks = document.querySelectorAll('.navigation-bar a');
             
             navLinks.forEach(link => {

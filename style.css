@@ -1,8 +1,6 @@
 /* --- GENERAL SETTINGS --- */
 body {
-    /* Un alb-fildeș foarte fin, odihnitor pentru ochi */
     background-color: #faf8f5; 
-    /* Gri-antracit pentru text, mult mai elegant decât negrul pur */
     color: #333333; 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
@@ -17,9 +15,9 @@ header.compact-header {
     position: relative;
     background-color: #141b2d;
     color: #ffffff;
-    text-align: left; /* Mutăm textul la stânga pentru un aspect mai modern */
-    padding: 50px 8%; /* Înălțime redusă, dar margini laterale estetice */
-    overflow: hidden; /* Taie tot ce iese din margini în timpul animației */
+    text-align: left; 
+    padding: 50px 8%; 
+    overflow: hidden; 
     border-bottom: 2px solid #06d6a0;
 }
 
@@ -32,7 +30,7 @@ header.compact-header::before {
     height: 100%;
     width: 0%; /* Pornește invizibilă */
     background-size: cover;
-    background-position: center 30%; /* Centrează poza puțin mai sus */
+    background-position: center 30%; 
     z-index: 1;
     animation: expandImageRight 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
@@ -40,13 +38,14 @@ header.compact-header::before {
 /* =========================================
    IMAGINI SPECIFICE PENTRU FIECARE PAGINĂ
    ========================================= */
-    header.compact-header.header-topic::before { background-image: url('images/torri.jpeg'); }
-    header.compact-header.header-methodology::before { background-image: url('images/portico-3.jpeg'); }
-    header.compact-header.header-ontology::before { background-image: url('images/portico-2.jpeg'); }
-    header.compact-header.header-sparql::before { background-image: url('images/bus-1.jpeg'); }
-    header.compact-header.header-llm::before { background-image: url('images/bus-2.jpeg'); }
-    header.compact-header.header-rdf::before { background-image: url('images/fermata.jpeg'); }
-    header.compact-header.header-results::before { background-image: url('images/piazza.jpeg'); }
+    header.compact-header.header-topic::before { background-image: url('images/prova.jpeg'); }
+    header.compact-header.header-methodology::before { background-image: url('images/D.jpeg'); }
+    header.compact-header.header-ontology::before { background-image: url('images/C.jpeg'); }
+    header.compact-header.header-sparql-poi::before { background-image: url('images/spark.jpeg'); } 
+    header.compact-header.header-sparql-bologna::before { background-image: url('images/spark1.jpeg'); }
+    header.compact-header.header-llm::before { background-image: url('images/llm.png'); }
+    header.compact-header.header-rdf::before { background-image: url('images/rdf.jpeg'); }
+    header.compact-header.header-results::before { background-image: url('images/panorama.jpeg'); }
     header.compact-header.header-challenges::before { background-image: url('images/portico_san_luca-1.webp'); }
 
 /* 2. GRADIENT DE PROTECȚIE (Asigură contrastul perfect pentru text) */
@@ -129,7 +128,6 @@ header.compact-header::after {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Am păstrat doar fluiditatea pentru opacitate și zoom. Fără filtre! */
     transition: opacity 0.6s ease, transform 0.6s ease; 
 }
 
@@ -163,38 +161,38 @@ header.compact-header::after {
 .header-text-section {
     text-align: center;
     padding: 40px 20px;
-    background-color: #0d1b2a; /* NOU: Albastru Oxford foarte închis (taie căldura pozelor) */
+    background-color: #0d1b2a; 
 }
 
 .header-text-section h1 {
     margin: 0;
     font-size: 2.6em;
-    color: #ecf0f1; /* NOU: Alb pur (extrem de lizibil și neutru) */
+    color: #ecf0f1;
     text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
 }
 
 .header-text-section p {
     margin: 15px auto 0 auto;
     font-size: 1.2em;
-    color: #ffffff; /* NOU: Cyan/Turcoaz digital pentru aerul de tehnologie/ontologii */    
+    color: #ffffff;    
     max-width: 800px; 
 }
 
 /* --- NAVIGATION BAR (Puntea de legătură - Structura ta + Culori noi) --- */
 .navigation-bar {
-    background-color: #141b2d; /* NOU: Albastru-indigo foarte închis */
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4); /* Umbra ta mult mai pronunțată */
+    background-color: #141b2d;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4); 
     position: sticky;
     top: 0;
     z-index: 1000;
-    border-bottom: 2px solid #06d6a0; /* NOU: Linie fină de verde smarald la bază */
+    border-bottom: 2px solid #06d6a0;
 }
 
 .navigation-bar ul {
     list-style-type: none;
     margin: 0;
     padding: 10px 0; /* Spațiul tău sus-jos pentru a nu părea înghesuit */
-    display: flex; /* Flexbox este modul ideal pentru a alinia elemente */
+    display: flex; /* Flexbox  */
     justify-content: center; /* Centrează absolut toate butoanele pe mijloc */
     align-items: center;
     flex-wrap: wrap; /* Ajută la afișarea corectă pe ecrane mai mici */
@@ -218,15 +216,15 @@ header.compact-header::after {
     text-decoration: none;
     font-weight: bold;
     transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease;
-    border-radius: 25px; /* Păstrăm colțurile complet rotunjite (pastilă) */
+    border-radius: 25px; 
 }
 
 /* Efectul de trecere cu mouse-ul peste buton (Hover) - NOU: Teracotă */
 .navigation-bar a:hover, .dropdown:hover .dropbtn {
-    background-color: #06d6a0; /* NOU: Verde Smarald când pui mouse-ul pe buton */
-    color: #141b2d; /* NOU: Textul devine închis la culoare pentru contrast perfect */
+    background-color: #06d6a0; 
+    color: #141b2d; 
     transform: scale(1.08); /* Mărește butonul cu 8% (efectul tău) */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Umbră subtilă doar pe buton */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
 /* --- MENIU DERULANT (DROPDOWN) --- */
@@ -310,7 +308,7 @@ header.compact-header::after {
 }
 
 /* Afișează meniul și aplică animația la trecerea mouse-ului [3] */
-.dropdown:hover .dropdown-content {
+.dropdown:hover > .dropdown-content {
     display: block;
     animation: fadeInMenuDown 0.3s ease-out forwards; 
 }
@@ -323,16 +321,16 @@ header.compact-header::after {
 
 /* Efectul de Hover pe elementele din interiorul listei derulante */
 .dropdown-content a:hover {
-    background-color: #05b388; /* NOU: O nuanță o idee mai închisă de verde smarald */
+    background-color: #05b388; 
     color: #ffffff;
-    transform: none; /* Păstrăm regula ta: Fără pop-out în interiorul listei */
-    box-shadow: none; /* Anulăm umbra butonului mare pentru interiorul listei */
+    transform: none; 
+    box-shadow: none; 
 }
 
 /* Variante pentru ecranele unde meniul inteligent se deschide ÎN SUS */
 .dropdown-content.drop-up {
     top: auto;
-    bottom: calc(100% + 12px); /* Spațiu de 12px deasupra butonului */
+    bottom: calc(100% + 12px); /* Spațiu de 12px i */
 }
 .dropdown-content.drop-up::before {
     top: auto;
@@ -360,7 +358,7 @@ header.compact-header::after {
 
 /* Efectul de Hover pe link-urile din listă */
 .dropdown-content a:hover {
-    background-color: rgba(5, 179, 136, 0.9); /* Verde smarald ușor transparent */
+    background-color: rgba(5, 179, 136, 0.9); 
     color: #ffffff;
 }
 
@@ -385,13 +383,33 @@ h3 {
     margin-top: 30px;
 }
 
+/* =========================================
+   ACTIVE LINK (EVIDENȚIEREA PAGINII CURENTE)
+   ========================================= */
+
+/* Stilul persistent pentru pagina pe care ne aflăm */
+.navigation-bar a.active, 
+.dropdown .dropbtn.active {
+    background-color: #06d6a0; 
+    color: #141b2d !important; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+/* Pentru link-urile din interiorul meniului derulant (SPARQL, LLM) */
+.dropdown-content a.active {
+    background-color: #05b388; 
+    color: #ffffff !important;
+    box-shadow: none; 
+    transform: none;
+}
+
 /* --- STILIZAREA BLOCURILOR DE COD (SPARQL / TURTLE) --- */
 pre {
     background-color: #282c34;
     color: #f8f8f2;
     padding: 15px;
     border-radius: 5px;
-    overflow-x: auto; /* Adaugă scroll orizontal dacă linia de cod e prea lungă */
+    overflow-x: auto; 
     font-family: 'Courier New', Courier, monospace;
     font-size: 0.95em;
     border-left: 5px solid #18bc9c;
@@ -443,17 +461,15 @@ blockquote {
 
 /* --- STILIZAREA LINK-URILOR DIN TEXT --- */
 .container a {
-    color: #34495e; /* O nuanță elegantă de albastru-închis pentru a le scoate în evidență din textul normal */
-    text-decoration: none; /* Elimină linia de sub text */
-    font-weight: 600; /* Le face o idee mai îngroșate (semi-bold) pentru a fi ușor de recunoscut */
-    transition: color 0.3s ease-in-out; /* O tranziție fină pentru schimbarea culorii */
+    color: #34495e; 
+    text-decoration: none;
+    font-weight: 600; 
+    transition: color 0.3s ease-in-out; 
 }
 
 /* Efectul la trecerea mouse-ului (Hover) */
 .container a:hover {
-    color: #06d6a0;/*#be66e4;*/ /* Se transformă în verdele-smarald tematic al site-ului tău// nou mov elegant la interacțiune */
-    /* Dacă vreodată te răzgândești și vrei ca linia să apară DOAR când pui mouse-ul pe link, poți șterge barele din stânga și dreapta de la linia următoare: */
-    /* text-decoration: underline; */
+    color: #06d6a0;
 }
 
 .team-list {
@@ -529,14 +545,14 @@ blockquote {
 
 /* Efectul la trecerea mouse-ului peste link-urile din footer */
 .footer-links a:hover {
-    color: #c0392b; /* Devine Roșu Teracotă la hover */
-    padding-left: 5px; /* Efect subtil de glisare spre dreapta */
+    color: #c0392b; 
+    padding-left: 5px; 
 }
 
 /* Linia de Copyright de la final */
 .footer-bottom {
     text-align: center;
-    border-top: 1px solid #34495e; /* O linie de delimitare foarte subtilă */
+    border-top: 1px solid #34495e; 
     padding-top: 15px;
     font-size: 0.85em;
     color: #95a5a6;
@@ -560,13 +576,13 @@ blockquote {
     padding: 20px 20px 20px 70px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    border-left: 6px solid #2c3e50; /* Margine stânga Ardezie */
+    border-left: 6px solid #2c3e50; 
     transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
 .phase:hover {
-    transform: translateX(8px); /* Cardul glisează puțin la dreapta la hover */
-    border-left-color: #c0392b; /* Marginea se face Roșu Teracotă */
+    transform: translateX(8px); 
+    border-left-color: #c0392b; 
 }
 
 /* Bulinele cu numere personalizate */
@@ -576,14 +592,14 @@ blockquote {
     position: absolute;
     left: 15px;
     top: 50%;
-    transform: translateY(-50%); /* Le centrează perfect pe verticală */
-    background-color: #e67e22; /* Bulina de culoarea Ocru */
+    transform: translateY(-50%); 
+    background-color: #e67e22;
     color: white;
     font-weight: bold;
     font-size: 1.2em;
     width: 35px;
     height: 35px;
-    border-radius: 50%; /* Face forma rotundă */
+    border-radius: 50%; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -601,11 +617,11 @@ blockquote {
     font-size: 0.95em;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     border-radius: 8px; /* Margini rotunjite pentru tabel */
-    overflow: hidden; /* Esențial pentru ca fundalul să nu iasă din marginile rotunjite */
+    overflow: hidden; 
 }
 
 .comparison-table thead tr {
-    background-color: #2c3e50; /* Fundal Ardezie pentru antet */
+    background-color: #2c3e50; 
     color: #ffffff;
     text-align: left;
 }
@@ -631,7 +647,7 @@ blockquote {
 
 /* Efect de hover pe rândurile tabelului (Culoare + ZOOM) */
 .comparison-table tbody tr:hover {
-    background-color: #fdf6e3; /* O nuanță subtilă de crem/ocru */
+    background-color: #fdf6e3;
     
     /* 2. EFECTUL DE ZOOM: Mărește rândul cu 2% */
     transform: scale(1.02); 
@@ -650,7 +666,7 @@ blockquote {
 /* Evidențiem numele modelului (prima coloană) */
 .comparison-table td:first-child {
     font-weight: bold;
-    color: #c0392b; /* Roșu Teracotă Bologna */
+    color: #c0392b; 
     width: 20%;
 }
 
@@ -672,13 +688,13 @@ h4.subsection-title {
 
 /* Butonul pentru Google Colab / Link-uri externe */
 a.action-button {
-    background-color: #c0392b; /* Roșu Teracotă */
-    color: #ffffff !important; /* Alb pur forțat pentru contrast maxim */
+    background-color: #c0392b; 
+    color: #ffffff !important; 
     padding: 12px 24px;
-    text-decoration: none !important; /* Fără nicio linie sub text */
+    text-decoration: none !important; 
     border-radius: 25px;
-    font-family: inherit; /* Păstrează fontul frumos al restului paginii */
-    font-size: 1.05em; /* Scris un pic mai mare pentru lizibilitate */
+    font-family: inherit; 
+    font-size: 1.05em; 
     font-weight: bold;
     display: inline-block;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
@@ -686,10 +702,10 @@ a.action-button {
 }
 
 a.action-button:hover {
-    background-color: #902b20; /* Un roșu mai închis la trecerea mouse-ului */
+    background-color: #902b20; 
     color: #ffffff !important; 
-    transform: translateY(-3px); /* Se ridică mai finuț la hover */
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15); /* Umbra devine mai pronunțată */
+    transform: translateY(-3px); 
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15); 
 }
 
 /* =========================================
@@ -697,22 +713,22 @@ a.action-button:hover {
    ========================================= */
 
 blockquote.highlight-quote {
-    background-color: #fdf6e3; /* Un fundal cald, crem */
+    background-color: #fdf6e3; 
     padding: 20px;
-    border-left: 6px solid #c0392b; /* Marginea stângă de culoare ocru/portocaliu */
+    border-left: 6px solid #c0392b; 
     margin: 30px 0;
-    border-radius: 0 8px 8px 0; /* Colțuri ușor rotunjite în dreapta */
-    color: #2c3e50; /* Text nuanța ardezie */
+    border-radius: 0 8px 8px 0; 
+    color: #2c3e50; 
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     line-height: 1.6;
 }
 
 blockquote.highlight-quote strong {
-    color: #c0392b; /* Textul îngroșat din citat devine roșu teracotă */
+    color: #c0392b; 
 }
 
 /* =========================================
-   STILURI PENTRU LISTA DE SFIDE (CHALLENGES)
+    LISTA  SFIDE (CHALLENGES)
    ========================================= */
 
 ul.challenges-list {
@@ -727,7 +743,7 @@ li.challenge-item {
     padding: 20px 25px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-    border-left: 5px solid #e74c3c; /* Margine Roșie pentru a evidenția provocările */
+    border-left: 5px solid #e74c3c; 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -738,7 +754,7 @@ li.challenge-item:hover {
 
 /* Stil pentru titlul fiecărei provocări */
 li.challenge-item strong {
-    color: #2c3e50; /* Culoare Ardezie */
+    color: #2c3e50;
     font-size: 1.1em;
     display: block; /* Pune titlul pe un rând separat */
     margin-bottom: 8px;
@@ -789,7 +805,7 @@ a.text-link:hover {
 }
 
 /* =========================================
-   HOMEPAGE LAYOUT (Grilă proporțională 2/3 - 1/3)
+   HOMEPAGE LAYOUT (Grid  2/3 - 1/3)
    ========================================= */
 
 .homepage-layout {
@@ -797,10 +813,24 @@ a.text-link:hover {
     /* Împarte ecranul în 3 fracții: 2 pentru text, 1 pentru galerie */
     grid-template-columns: 2fr 1fr; 
     gap: 50px; 
-    max-width: 1200px; /* O lățime generoasă pentru a avea loc */
+    max-width: 1200px; 
     margin: 60px auto;
     padding: 0 20px;
-    align-items: start; /* Previne întinderea barei laterale dacă textul e scurt */
+    align-items: start; 
+}
+
+/* =========================================
+   LINK HOMEPAGE
+   ========================================= */
+.homepage-layout a {
+    color: #34495e;
+    text-decoration: none; 
+    font-weight: 600; 
+    transition: color 0.3s ease-in-out; 
+}
+
+.homepage-layout a:hover {
+    color: #06d6a0; 
 }
 
 /* =========================================
@@ -834,7 +864,7 @@ a.text-link:hover {
     width: 100%;
     height: 220px;
     object-fit: cover;
-    object-position: top left; /* Ține codul/graficul aliniat în stânga sus */
+    object-position: top left; 
 }
 
 .side-card-text {
@@ -843,20 +873,20 @@ a.text-link:hover {
     font-weight: bold;
     text-align: center;
     font-size: 1.1em;
-    border-top: 3px solid #06d6a0; /* Linie smarald despărțitoare */
+    border-top: 3px solid #06d6a0; 
     background-color: #141b2d;
     position: relative;
     z-index: 5;
 }
 
 /* =========================================
-   DERULATORUL DE IMAGINI (SPARQL SLIDER)
+   SPARQL SLIDER
    ========================================= */
 
 .slider-wrapper {
     width: 100%;
     height: 220px;
-    overflow: hidden; /* Ascunde imaginile care ies din cadru */
+    overflow: hidden;
     position: relative;
 }
 
@@ -864,12 +894,12 @@ a.text-link:hover {
     display: flex;
     width: 100%;
     height: 100%;
-    /* Activează animația care durează 16s și se repetă la infinit */
+    /*  16s to infinit */
     animation: autoSlide 16s infinite; 
 }
 
 .slider-container img {
-    flex: 0 0 100%; /* Fiecare imagine ocupă 100% din vizor */
+    flex: 0 0 100%; 
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -895,7 +925,103 @@ a.text-link:hover {
    ========================================= */
 @media (max-width: 900px) {
     .homepage-layout {
-        /* Pe ecrane mai mici (telefoane/tablete), textul și galeria se pun una sub alta */
         grid-template-columns: 1fr; 
     }
 }
+
+/* --- SUB-MENIU LATERAL (COMPLET IZOLAT) --- */
+
+.nested-dropdown {
+    position: relative;
+}
+
+/* Butonul SPARQL devine flexibil pentru a alinia textul pe centru și săgeata în dreapta */
+.nested-dropdown .nested-dropbtn {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* Poziționăm sub-meniul clar în dreapta, cu un spațiu de 15px */
+.nested-dropdown-content {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;       
+    margin-left: 15px; 
+    
+    /* Design-ul preluat de la meniul principal */
+    background-color: rgba(31, 41, 61, 0.95); 
+    backdrop-filter: blur(8px); 
+    -webkit-backdrop-filter: blur(8px); 
+    min-width: 220px;
+    box-shadow: 0px 10px 25px rgba(0,0,0,0.3);
+    border-radius: 18px;
+    z-index: 1002; 
+}
+
+/*  15px hover */
+.nested-dropdown-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -15px;
+    width: 15px;
+    height: 100%;
+    background: transparent;
+}
+
+/* lateral slide */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        margin-left: 5px; 
+    }
+    to {
+        opacity: 1;
+        margin-left: 15px; 
+    }
+}
+
+/* Declanșarea hover-ului pe sub-meniu */
+.nested-dropdown:hover > .nested-dropdown-content {
+    display: block;
+    animation: slideInLeft 0.25s ease-out forwards;
+}
+
+/* --- FIX NAVBAR  --- */
+
+.navigation-bar ul {
+    position: relative; 
+}
+
+.navigation-bar li.lang-switch {
+    position: absolute;
+    right: 20px;      
+    top: 50%;         
+    transform: translateY(-50%); 
+    margin: 0;        
+}
+
+.navigation-bar li.lang-switch a {
+    background-color: transparent;
+    border: 2px solid #06d6a0;
+    color: #06d6a0; 
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: bold;
+    display: inline-block; 
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.navigation-bar li.lang-switch a:hover {
+    background-color: #06d6a0;
+    color: #141b2d; 
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(6, 214, 160, 0.3);
+}
+

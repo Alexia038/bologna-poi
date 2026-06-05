@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results & Conclusions - Bologna Urban POI Knowledge Graph</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <header class="compact-header header-results">
+        <div class="compact-header-content">
+            <h1>Bologna Urban Points of Interest</h1>
+            <p>Knowledge Graph Enrichment with LLMs</p>
+        </div>
+    </header>
+
+    <nav id="main-menu" class="navigation-bar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="topic.html">Project Topic</a></li>
+            <li><a href="methodology.html">Methodology</a></li>
+            <li><a href="ontology.html">Ontology Extension</a></li>
+            
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Technical Details ▾</a>
+                <div class="dropdown-content">
+                    
+                    <div class="nested-dropdown">
+                        <a href="#" class="nested-dropbtn">SPARQL ▸</a>
+                        <div class="nested-dropdown-content">
+                            <a href="sparql-poi.html">Query POI-AP_IT</a>
+                            <a href="sparql-bologna.html">Bologna POI</a>
+                        </div>
+                    </div>
+                    
+                    <a href="llm.html">LLM Experiments</a>
+                    <a href="rdf.html">RDF Triples</a>
+                </div>
+            </li>
+
+            <li><a href="results.html">Results</a></li>
+            <li><a href="challenges.html">Challenges</a></li>
+
+            <li class="lang-switch"><a href="../results.html">IT</a></li>
+        </ul>
+    </nav>
+
+    <main id="results-content" class="container">
+        
+        <section id="conclusions-intro" class="content-section">
+            <h2>Discussion & Conclusions</h2>
+            
+            <p>The objective of this project was to develop a semantic representation of the urban points of interest of the city of Bologna through the construction of a local ontology interoperable with the national POI-AP_IT model and its subsequent population using municipal open data.</p>
+
+            <p>The results obtained show how the adopted approach allowed for the effective integration of heterogeneous data from different information sources within a single conceptual model. The extension of the national ontology made it possible to represent categories not explicitly provided for in the starting vocabulary, while maintaining compatibility with national standards. These include:</p>
+            <ul>
+                <li>Urban furniture (benches, bins, fountains)</li>
+                <li>Public toilets</li>
+                <li>Parking areas</li>
+                <li>Local public transport stops (TPER)</li>
+                <li>Porticoes</li>
+            </ul>
+
+            <h3 class="subsection-title">The Role of Large Language Models (LLMs)</h3>
+            <p>The experimentation conducted with Large Language Models highlighted the potential of such tools to support semantic modeling activities and the automatic generation of RDF triples. Both analyzed models were able to interpret the structure of the ontology and produce RDF representations consistent with the application domain.</p>
+            
+            <p>However, the results showed significant differences in terms of output completeness, level of detail in explanations, and the ability to follow constraints defined in the prompts. In particular, more structured prompting techniques, such as <strong>few-shot</strong> and <strong>chain-of-thought</strong>, generally produced results that adhered more closely to the ontology compared to <strong>zero-shot</strong> prompting.</p>
+
+            <blockquote class="highlight-quote">
+                <strong>The Importance of Human Validation:</strong> The activity carried out also highlighted the importance of human validation in the process of building a Knowledge Graph. Although LLMs can accelerate triple generation and support the semantic mapping phase, there remains a need to verify the correctness of the classes, properties, and datatypes used, especially in contexts characterized by custom ontologies and complex datasets.
+            </blockquote>
+
+            <p>Overall, the project demonstrates how the combination of ontologies, open data, and large language models can constitute an effective approach for building territorial Knowledge Graphs. The developed solution represents a reusable basis for future integration and valorization activities of the urban data of the Municipality of Bologna.</p>
+
+            <h3 class="subsection-title">Future Developments</h3>
+            <p>Possible future developments for the project include:</p>
+            <ul>
+                <li>The extension of the ontology with additional categories of points of interest.</li>
+                <li>The integration of new datasets from other public administrations.</li>
+                <li>The implementation of fully automated procedures for the generation and update of RDF triples.</li>
+                <li>A systematic evaluation of the quality of triples generated by LLMs through quantitative metrics and semantic validation frameworks.</li>
+            </ul>
+
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            
+            <div class="footer-info">
+                <h3>Knowledge Graph Enrichment with LLMs</h3>
+                <p><strong>Course:</strong> Metodi Semantici per la Trasformazione Digitale</p>
+                <p><strong>Academic Year:</strong> 2025/2026</p>
+                <p class="team-footer">
+                    <strong>Project Group:</strong><br>
+                    Michela Di Campli, Alexia Dinescu, Sofia Mazzetti, Elena Paniccià<br>
+                    <a href="https://github.com/Alexia038/bologna-poi" target="_blank" class="text-link">Repository GitHub</a>
+                </p>
+                <p><strong>Report Overleaf:</strong></p>
+                <a href="https://it.overleaf.com/read/wbzwbjfmfwtc#99bb37" target="_blank" class="text-link">Knowledge Graph dei Punti di Interesse Urbani di Bologna</a>
+            </div>
+
+            <div class="footer-links">
+                <h3>Explore the Project</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="topic.html">Project Topic</a></li>
+                    <li><a href="methodology.html">Methodology</a></li>
+                    <li><a href="ontology.html">Ontology Extension</a></li>
+                    <li><a href="sparql-poi.html">SPARQL Query POI-AP_IT</a></li>
+                    <li><a href="sparql-bologna.html">SPARQL Query Bologna</a></li>
+                    <li><a href="llm.html">LLM Experiments</a></li>
+                    <li><a href="rdf.html">RDF Triples</a></li>
+                    <li><a href="results.html">Results and Comparison</a></li>
+                    <li><a href="challenges.html">Challenges and Conclusions</a></li>
+                </ul>
+            </div>
+
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Alma Mater Studiorum - University of Bologna. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smart Dropdown Menu
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('mouseenter', () => {
+                const content = dropdown.querySelector('.dropdown-content');
+                
+                // Get the coordinates of the button on the screen
+                const rect = dropdown.getBoundingClientRect();
+                
+                // Check how much space (in pixels) we have from the button to the bottom edge of the screen.
+                if (window.innerHeight - rect.bottom < 150) {
+                    content.classList.add('drop-up'); // No room below -> Open UPWARDS
+                } else {
+                    content.classList.remove('drop-up'); // There is room below -> Open normally DOWNWARDS
+                }
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // Get the URL of the current page
+            const currentUrl = window.location.href;
+            
+            // Select all links from the navigation bar
+            const navLinks = document.querySelectorAll('.navigation-bar a');
+            
+            navLinks.forEach(link => {
+                // If the link address matches the current page address
+                if (link.href === currentUrl) {
+                    link.classList.add('active'); // Highlight the button
+                    
+                    // If the link is in the dropdown menu (e.g., SPARQL), also highlight the parent button ("Technical Details")
+                    const dropdownParent = link.closest('.dropdown');
+                    if (dropdownParent) {
+                        const dropbtn = dropdownParent.querySelector('.dropbtn');
+                        if (dropbtn) dropbtn.classList.add('active');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

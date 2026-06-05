@@ -1,55 +1,44 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Project Report: Knowledge Graphs & LLMs</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 
-    <!-- HEADER INTERACTIV CU GALERIE GRID (Stil Infinity) -->
     <header id="site-header">
         
-        <!-- Zona 1: gallery -->
         <div class="header-gallery">
             
-            <!-- Card 1: Portico -->
             <div class="gallery-card">
-                <!-- Imaginea care stă ascunsă în spate -->
-                <img class="img-back" src="images/portico-2.jpeg" alt="Portico di Bologna">
-                <!-- Imaginea care stă deasupra inițial -->
-                <img class="img-front" src="images/portico_san_luca-1.webp" alt="Portico San Luca">
+                <img class="img-back" src="../images/portico-2.jpeg" alt="Bologna Portico">
+                <img class="img-front" src="../images/portico_san_luca-1.webp" alt="San Luca Portico">
             </div>
 
-            <!-- Card 2: piazza -->
             <div class="gallery-card">
-                <img class="img-back" src="images/piazza.jpeg" alt="Piazza Maggiore">
-                <img class="img-front" src="images/portico-3.jpeg" alt="Soffitto Portico">
+                <img class="img-back" src="../images/piazza.jpeg" alt="Piazza Maggiore">
+                <img class="img-front" src="../images/portico-3.jpeg" alt="Portico Ceiling">
             </div>
 
-            <!-- Card 3: Transporto -->
             <div class="gallery-card">
-                <img class="img-back" src="images/fermata.jpeg" alt="Fermata TPER">
-                <img class="img-front" src="images/bus-1.jpeg" alt="Autobus TPER 1">
+                <img class="img-back" src="../images/fermata.jpeg" alt="TPER Bus Stop">
+                <img class="img-front" src="../images/bus-1.jpeg" alt="TPER Bus 1">
             </div>
 
-            <!-- Card 4: Torri -->
             <div class="gallery-card">
-                <img class="img-back" src="images/torri.jpeg" alt="Le Due Torri">
-                <img class="img-front" src="images/bus-2.jpeg" alt="Autobus TPER 2">
+                <img class="img-back" src="../images/torri.jpeg" alt="The Two Towers">
+                <img class="img-front" src="../images/bus-2.jpeg" alt="TPER Bus 2">
             </div>
 
         </div>
 
-        <!-- Zona 2: Titolo -->
         <div class="header-text-section">
             <h1>Bologna Urban Points of Interest Knowledge Graph</h1>
-            <p>Metodologia per la costruzione e l'arricchimento di un grafo di conoscenza dei punti di interesse urbani di Bologna</p>
+            <p>Methodology for the construction and enrichment of a knowledge graph of urban points of interest in Bologna</p>
         </div>
     </header>
 
-    <!-- NAVIGATION: The menu that will stay the same across all pages -->
-    <!-- MENIUL PRINCIPAL -->
     <nav id="main-menu" class="navigation-bar">
         <ul>
             <li><a href="index.html">Home</a></li>
@@ -57,12 +46,10 @@
             <li><a href="methodology.html">Methodology</a></li>
             <li><a href="ontology.html">Ontology Extension</a></li>
             
-            <!-- DROPDOWN MAIN-->
             <li class="dropdown">
                 <a href="#" class="dropbtn">Technical Details ▾</a>
                 <div class="dropdown-content">
                     
-                    <!-- SUB-MENIU SPARQL -->
                     <div class="nested-dropdown">
                         <a href="#" class="nested-dropbtn">SPARQL ▸</a>
                         <div class="nested-dropdown-content">
@@ -79,20 +66,17 @@
             <li><a href="results.html">Results</a></li>
             <li><a href="challenges.html">Challenges</a></li>
 
-            <li class="lang-switch"><a href="en/index.html">EN</a></li>
+            <li class="lang-switch"><a href="../index.html">IT</a></li>
         </ul>
     </nav>
 
-    <!-- LAYOUT PRINCIPAL  -->
     <div class="homepage-layout">
         
-        <!-- PARTEA STÂNGĂ-->
         <main class="main-content">
             <section id="abstract" class="content-section">
             <h2>Project Abstract</h2>
-            <!-- Added the new abstract text, split into two paragraphs for better readability -->
-            <p>Il progetto si propone l'obiettivo di rappresentare e arricchire in modo semantico i punti di interesse urbani della città di Bologna. A partire da dataset eterogenei messi a disposizione dal portale <a href="https://opendata.comune.bologna.it/pages/home/?flg=it-it" target="_blank">Open Data del Comune di Bologna</a>, il lavoro mira a costruire un grafo di conoscenza che riutilizzi l'ontologia nazionale dei <a href="https://w3id.org/italia/onto/POI" target="_blank">Punti di Interesse (POI-AP_IT)</a>, sviluppata da AGID, e, dove necessario, la estenda con concetti specifici del contesto urbano bolognese.</p>
-            <p>Il lavoro si articola in diverse fasi: l'esplorazione dell'ontologia nazionale tramite <strong>SPARQL</strong>, l'estensione ontologica locale tramite <strong>Protégé</strong> e la generazione automatica di triple RDF confrontando le prestazioni dei Large Language Models <strong>Gemini Pro</strong> e <strong>ChatGPT Plus</strong>. L'intero processo è guidato dalla volontà di colmare un gap semantico tra il modello nazionale e le specificità del contesto bolognese, garantendo al tempo stesso il riuso del vocabolario esistente.</p>
+            <p>The project aims to represent and semantically enrich the urban points of interest of the city of Bologna. Starting from heterogeneous datasets made available by the <a href="https://opendata.comune.bologna.it/pages/home/?flg=it-it" target="_blank">Open Data portal of the Municipality of Bologna</a>, the work aims to build a knowledge graph that reuses the national ontology of <a href="https://w3id.org/italia/onto/POI" target="_blank">Points of Interest (POI-AP_IT)</a>, developed by AGID, and, where necessary, extends it with specific concepts of the Bolognese urban context.</p>
+            <p>The work is divided into several phases: the exploration of the national ontology via <strong>SPARQL</strong>, the local ontological extension via <strong>Protégé</strong>, and the automatic generation of RDF triples by comparing the performance of the Large Language Models <strong>Gemini Pro</strong> and <strong>ChatGPT Plus</strong>. The entire process is driven by the desire to bridge a semantic gap between the national model and the specificities of the Bolognese context, while simultaneously ensuring the reuse of the existing vocabulary.</p>
         </section>
 
         <section id="team" class="content-section">
@@ -103,7 +87,7 @@
                     
                     <!-- PARTEA STÂNGĂ: Imaginea echipei -->
                     <div style="flex: 1; min-width: 250px;">
-                        <img src="images/noi.png" alt="Il Nostro Team" style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 6px 15px rgba(0,0,0,0.1); border: 1px solid #e0e0e0;">
+                        <img src="../images/noi.png" alt="Il Nostro Team" style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 6px 15px rgba(0,0,0,0.1); border: 1px solid #e0e0e0;">
                     </div>
                     
                     <!-- PARTEA DREAPTĂ: Lista originală cu nume -->
@@ -120,23 +104,20 @@
             </section>
         </main>
 
-        <!-- PARTEA DREAPTĂ-->
         <aside class="sidebar-gallery">
             
-            <!-- Card Ontology -->
             <a href="ontology.html" class="side-card">
-                <img src="images/Ontology_image.jpg" alt="Ontology Graph">
+                <img src="../images/Ontology_image.jpg" alt="Ontology Graph">
                 <div class="side-card-text">Ontology Extension</div>
             </a>
 
-            <!--  Card SPARQL  -->
             <a href="sparql-poi.html" class="side-card">
                 <div class="slider-wrapper">
                     <div class="slider-container">
-                        <img src="images/Query1.png" alt="SPARQL Query 1">
-                        <img src="images/Query2.png" alt="SPARQL Query 2">
-                        <img src="images/Query3.png" alt="SPARQL Query 3">
-                        <img src="images/Query4.png" alt="SPARQL Query 4">
+                        <img src="../images/Query1.png" alt="SPARQL Query 1">
+                        <img src="../images/Query2.png" alt="SPARQL Query 2">
+                        <img src="../images/Query3.png" alt="SPARQL Query 3">
+                        <img src="../images/Query4.png" alt="SPARQL Query 4">
                     </div>
                 </div>
                 <div class="side-card-text">SPARQL Queries</div>
@@ -146,90 +127,86 @@
 
     </div>
 
-    <!-- FOOTER -->
     <footer class="site-footer">
         <div class="footer-container">
             
-
             <div class="footer-info">
                 <h3>Knowledge Graph Enrichment with LLMs</h3>
-                <p><strong>Corso:</strong> Metodi Semantici per la Trasformazione Digitale</p>
-                <p><strong>Anno Accademico:</strong> 2025/2026</p>
+                <p><strong>Course:</strong> Metodi Semantici per la Trasformazione Digitale</p>
+                <p><strong>Academic Year:</strong> 2025/2026</p>
                 <p class="team-footer">
-                    <strong>Gruppo di Progetto:</strong><br>
+                    <strong>Project Group:</strong><br>
                     Michela Di Campli, Alexia Dinescu, Sofia Mazzetti, Elena Paniccià<br>
-                    <a href="https://github.com/Alexia038/bologna-poi" target="_blank" class="text-link">Repository GitHub</a><br>
+                    <a href="https://github.com/Alexia038/bologna-poi" target="_blank" class="text-link">Repository GitHub</a>
                 </p>
                 <p><strong>Report Overleaf:</strong></p>
                 <a href="https://it.overleaf.com/read/wbzwbjfmfwtc#99bb37" target="_blank" class="text-link">Knowledge Graph dei Punti di Interesse Urbani di Bologna</a>
             </div>
 
-
             <div class="footer-links">
-                <h3>Esplora il Progetto</h3>
+                <h3>Explore the Project</h3>
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="topic.html">Argomento del Progetto</a></li>
-                    <li><a href="methodology.html">Metodologia</a></li>
-                    <li><a href="ontology.html">Estensione Ontologica</a></li>
+                    <li><a href="topic.html">Project Topic</a></li>
+                    <li><a href="methodology.html">Methodology</a></li>
+                    <li><a href="ontology.html">Ontology Extension</a></li>
                     <li><a href="sparql-poi.html">SPARQL Query POI-AP_IT</a></li>
                     <li><a href="sparql-bologna.html">SPARQL Query Bologna</a></li>
-                    <li><a href="llm.html">Esperimenti LLM</a></li>
-                    <li><a href="rdf.html">Triple RDF</a></li>
-                    <li><a href="results.html">Risultati e Confronto</a></li>
-                    <li><a href="challenges.html">Sfide e Conclusioni</a></li>
+                    <li><a href="llm.html">LLM Experiments</a></li>
+                    <li><a href="rdf.html">RDF Triples</a></li>
+                    <li><a href="results.html">Results and Comparison</a></li>
+                    <li><a href="challenges.html">Challenges and Conclusions</a></li>
                 </ul>
             </div>
 
         </div>
         
-        <!--Copyright -->
         <div class="footer-bottom">
-            <p>&copy; 2026 Alma Mater Studiorum - Università di Bologna. Tutti i diritti riservati.</p>
+            <p>&copy; 2026 Alma Mater Studiorum - University of Bologna. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- SCRIPT TOGGLE) -->
     <script>
         const cards = document.querySelectorAll('.gallery-card');
 
         cards.forEach(card => {
-            // De fiecare dată când mouse-ul INTRĂ pe imagine...
+            // Every time the mouse ENTERS the image...
             card.addEventListener('mouseenter', () => {
-                // ...folosim 'toggle' ca să alternăm clasa (pornit/oprit) infinit!
+                // ...we use 'toggle' to alternate the class (on/off) infinitely!
                 card.classList.toggle('is-revealed');
             });
         });
 
-        // 2. smart Dropdown)
+        // 2. Smart Dropdown Menu
         const dropdowns = document.querySelectorAll('.dropdown');
         dropdowns.forEach(dropdown => {
             dropdown.addEventListener('mouseenter', () => {
                 const content = dropdown.querySelector('.dropdown-content');
                 
-
+                // Get the coordinates of the button on the screen
                 const rect = dropdown.getBoundingClientRect();
                 
-                // 150px
+                // Check how much space (in pixels) we have from the button to the bottom edge of the screen.
+                // 150px is the approximate height of your dropdown list.
                 if (window.innerHeight - rect.bottom < 150) {
-                    content.classList.add('drop-up'); // Nu e loc jos -> Deschide în SUS
+                    content.classList.add('drop-up'); // No room below -> Open UPWARDS
                 } else {
-                    content.classList.remove('drop-up'); // Este loc jos -> Deschide normal în JOS
+                    content.classList.remove('drop-up'); // There is room below -> Open normally DOWNWARDS
                 }
             });
         });
 
         document.addEventListener("DOMContentLoaded", () => {
-            // URL 
+            // Get the URL of the current page
             const currentUrl = window.location.href;
             
-            // select all nav links
+            // Select all links from the navigation bar
             const navLinks = document.querySelectorAll('.navigation-bar a');
             
             navLinks.forEach(link => {
                 // If the link address matches the current page address
                 if (link.href === currentUrl) {
-                    link.classList.add('active'); // Aprinde butonul
+                    link.classList.add('active'); // Highlight the button
                     
                     // If the link is in the dropdown menu (e.g., SPARQL), also highlight the parent button ("Technical Details")
                     const dropdownParent = link.closest('.dropdown');

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Topic - Bologna Urban POI Knowledge Graph</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <header class="compact-header header-topic">
+        <div class="compact-header-content">
+            <h1>Bologna Urban Points of Interest</h1>
+            <p>Knowledge Graph Enrichment with LLMs</p>
+        </div>
+    </header>
+
+    <nav id="main-menu" class="navigation-bar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="topic.html">Project Topic</a></li>
+            <li><a href="methodology.html">Methodology</a></li>
+            <li><a href="ontology.html">Ontology Extension</a></li>
+            
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Technical Details ▾</a>
+                <div class="dropdown-content">
+                    
+                    <div class="nested-dropdown">
+                        <a href="#" class="nested-dropbtn">SPARQL ▸</a>
+                        <div class="nested-dropdown-content">
+                            <a href="sparql-poi.html">Query POI-AP_IT</a>
+                            <a href="sparql-bologna.html">Bologna POI</a>
+                        </div>
+                    </div>
+                    
+                    <a href="llm.html">LLM Experiments</a>
+                    <a href="rdf.html">RDF Triples</a>
+                </div>
+            </li>
+
+            <li><a href="results.html">Results</a></li>
+            <li><a href="challenges.html">Challenges</a></li>
+
+            <li class="lang-switch"><a href="../topic.html">IT</a></li>
+        </ul>
+    </nav>
+
+    <main id="topic-content" class="container">
+        
+        <section id="topic-intro" class="content-section">
+            <h2>Project Topic & Gap Analysis</h2>
+            
+            <h3>Exploration of POI-AP_IT via SPARQL</h3>
+            <p>The first phase involved the systematic exploration of the national Points of Interest ontology (POI-AP_IT), exposed with the IRI <a href="https://w3id.org/italia/onto/POI" target="_blank">https://w3id.org/italia/onto/POI</a> and queryable through the SPARQL endpoint <a href="https://schema.gov.it/sparql" target="_blank">https://schema.gov.it/sparql</a>.</p>
+            <p>The objective was to understand the overall structure of the ontology, identify the main available classes and properties, and evaluate their capacity to represent urban points of interest relevant to the Bolognese use case. The exploration was initiated through generic queries on subject-predicate-object triples, filtering resources whose IRI belongs to the POI-AP_IT namespace, in order to obtain an overview of the entities actually modeled.</p>
+            <p>Subsequently, specific queries were formulated to list the classes (<code>owl:Class</code>) and properties (<code>owl:ObjectProperty</code>, <code>owl:DatatypeProperty</code>), retrieving their labels, comments, domains, and ranges, so as to identify concepts and relations potentially reusable for the project.</p>
+            <p>Finally, a targeted query was executed to verify the possible presence of concepts already relevant to the city of Bologna and urban services of interest (TPER bus stops, benches, public toilets, parking areas, porticoes, urban furniture), using filters based on <strong>REGEX</strong> applied to IRIs, labels, comments, and descriptions. The analysis of the results showed that POI-AP_IT offers a general semantic model for points of interest and some related properties, but does not explicitly cover several specific urban categories of the Bolognese context, thus revealing a gap to be filled.</p>
+
+            <h3 style="margin-top: 40px;">Data Preprocessing and Normalization of Municipal Data</h3>
+            <p>In parallel with the ontological exploration, a <strong>data preprocessing</strong> phase was launched using data from the Open Data portal of the Municipality of Bologna, with a specific focus on datasets related to urban furniture, public toilets, TPER bus stops, parking lots, and porticoes. The original datasets were heterogeneous both structurally (different column headers, formats, conventions) and lexically (non-uniform categories and descriptions), necessitating a preliminary <strong>normalization</strong> before proceeding with semantic integration.</p>
+            <p>The preprocessing operations were performed in a <strong>Python environment</strong> (Google Colab) and specifically involved cleaning missing or anomalous values, harmonizing column names, standardizing formats (for instance, for dates and coordinates), and aligning descriptive categories across the different datasets.</p>            <p style="text-align: center; margin: 30px 0;">
+                <a href="https://colab.research.google.com/drive/127wOWS2QX1ij1y0qJgyMleJomBS7AdC3?usp=sharing" target="_blank" class="action-button">
+                    Google Colab – Preprocessing and dataset integration ↗
+                </a>
+            </p>
+            <p>The result of this phase was a single <strong>CSV file with integrated and consistent data</strong>, ready to be mapped onto the identified ontological structures.</p>
+
+            <h3 style="margin-top: 40px;">Semantic Gap Analysis</h3>
+            <p>Based on the information derived from the exploration of POI-AP_IT and the analysis of the municipal datasets, a <strong><em>gap analysis</em></strong> was conducted to identify the concepts that the national model did not satisfactorily cover. In particular, it revealed the absence of specific classes and categories for representing urban services and infrastructure typical of the Bolognese context, such as TPER bus stops, detailed urban furniture (benches, bins, fountains), public toilets, parking areas, and, notably, the porticoes.</p>
+            <p>This analysis led to the definition of requirements for a <strong>local ontological extension</strong> that would be compatible with POI-AP_IT, but capable of modeling the categories present in the municipal datasets in a more articulated manner. The goal was to introduce new classes and properties only when strictly necessary, prioritizing the reuse of preexisting elements wherever they proved adequate for data representation.</p>
+
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-info">
+                <h3>Knowledge Graph Enrichment with LLMs</h3>
+                <p><strong>Course:</strong> Metodi Semantici per la Trasformazione Digitale</p>
+                <p><strong>Academic Year:</strong> 2025/2026</p>
+                <p class="team-footer">
+                    <strong>Project Group:</strong><br>
+                    Michela Di Campli, Alexia Dinescu, Sofia Mazzetti, Elena Paniccià<br>
+                    <a href="https://github.com/Alexia038/bologna-poi" target="_blank" class="text-link">Repository GitHub</a>
+                </p>
+                <p><strong>Report Overleaf:</strong></p>
+                <a href="https://it.overleaf.com/read/wbzwbjfmfwtc#99bb37" target="_blank" class="text-link">Knowledge Graph dei Punti di Interesse Urbani di Bologna</a>
+            </div>
+            <div class="footer-links">
+                <h3>Explore the Project</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="topic.html">Project Topic</a></li>
+                    <li><a href="methodology.html">Methodology</a></li>
+                    <li><a href="ontology.html">Ontology Extension</a></li>
+                    <li><a href="sparql-poi.html">SPARQL Query POI-AP_IT</a></li>
+                    <li><a href="sparql-bologna.html">SPARQL Query Bologna</a></li>
+                    <li><a href="llm.html">LLM Experiments</a></li>
+                    <li><a href="rdf.html">RDF Triples</a></li>
+                    <li><a href="results.html">Results and Comparison</a></li>
+                    <li><a href="challenges.html">Challenges and Conclusions</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Alma Mater Studiorum - University of Bologna. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smart Dropdown Menu
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('mouseenter', () => {
+                const content = dropdown.querySelector('.dropdown-content');
+                
+                // Get the coordinates of the button on the screen
+                const rect = dropdown.getBoundingClientRect();
+                
+                // Check how much space (in pixels) we have from the button to the bottom edge of the screen.
+                if (window.innerHeight - rect.bottom < 150) {
+                    content.classList.add('drop-up'); // No room below -> Open UPWARDS
+                } else {
+                    content.classList.remove('drop-up'); // There is room below -> Open normally DOWNWARDS
+                }
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // Get the URL of the current page
+            const currentUrl = window.location.href;
+            
+            // Select all links from the navigation bar
+            const navLinks = document.querySelectorAll('.navigation-bar a');
+            
+            navLinks.forEach(link => {
+                // If the link address matches the current page address
+                if (link.href === currentUrl) {
+                    link.classList.add('active'); // Highlight the button
+                    
+                    // If the link is in the dropdown menu (e.g., SPARQL), also highlight the parent button ("Technical Details")
+                    const dropdownParent = link.closest('.dropdown');
+                    if (dropdownParent) {
+                        const dropbtn = dropdownParent.querySelector('.dropbtn');
+                        if (dropbtn) dropbtn.classList.add('active');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

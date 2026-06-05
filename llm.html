@@ -7,7 +7,7 @@
 </head>
 <body>
 
-    <!-- COMPACT HEADER ANIMAT PENTRU CHALLENGES -->
+    <!-- COMPACT HEADER CHALLENGES -->
     <header class="compact-header header-llm">
         <div class="compact-header-content">
             <h1>Bologna Urban Points of Interest</h1>
@@ -22,21 +22,30 @@
             <li><a href="topic.html">Project Topic</a></li>
             <li><a href="methodology.html">Methodology</a></li>
             <li><a href="ontology.html">Ontology Extension</a></li>
-            <!-- AICI ÎNCEPE GRUPAREA (DROPDOWN) -->
+            
+            <!-- DROPDOWN TEHNICE -->
             <li class="dropdown">
                 <a href="#" class="dropbtn">Technical Details ▾</a>
                 <div class="dropdown-content">
-                    <a href="sparql.html">SPARQL Queries</a>
+                    
+                    <!-- SUB-MENIU LATERAL SPARQL -->
+                    <div class="nested-dropdown">
+                        <a href="#" class="nested-dropbtn">SPARQL ▸</a>
+                        <div class="nested-dropdown-content">
+                            <a href="sparql-poi.html">Query POI-AP_IT</a>
+                            <a href="sparql-bologna.html">Bologna POI</a>
+                        </div>
+                    </div>
+                    
                     <a href="llm.html">LLM Experiments</a>
                     <a href="rdf.html">RDF Triples</a>
                 </div>
             </li>
-            <!-- AICI SE TERMINĂ GRUPAREA
-            <li><a href="sparql.html">SPARQL Queries</a></li>
-            <li><a href="llm.html">LLM Experiments</a></li>
-            <li><a href="rdf.html">RDF Triples</a></li> -->
+
             <li><a href="results.html">Results</a></li>
             <li><a href="challenges.html">Challenges</a></li>
+
+            <li class="lang-switch"><a href="en/llm.html">EN</a></li>
         </ul>
     </nav>
 
@@ -83,7 +92,7 @@ Predicate: bo:hasDistrict
 Object: "Santo Stefano"
 RDF Triple: bo:POI_045 bo:hasDistrict "Santo Stefano" .</code></pre>
 
-            <!-- TECNICA 3 (Bucata introdusă de tine) -->
+            <!-- TECNICA 3 -->
             <h3 class="subsection-title">Tecnica 3 — Zero-Shot Chain-of-Thought Prompting</h3>
             <p>Nella tecnica zero-shot chain-of-thought, il modello viene istruito a ragionare in modo esplicito e strutturato prima di produrre l'output, seguendo una catena di pensiero definita nel prompt. Non vengono forniti esempi, ma viene specificato il processo logico da seguire:</p>
 <pre class="code-wide"><code>Sei un esperto di Semantic Web e Knowledge Graph.
@@ -102,11 +111,11 @@ Controlla che il Soggetto appartenga al rdfs:domain corretto della proprietà e 
 
 Ragioniamo passo dopo passo. Scansiona l’intero CSV fornito per individuare tutte le categorie uniche presenti nella colonna Tipologia POI.</code></pre>
 
-            <!-- TABELUL DE COMPARAȚIE (Tabella 1) -->
+            <!-- Tabella 1) -->
             <h3 class="subsection-title">Confronto delle prestazioni tra LLMs</h3>
             <p>Per valutare le prestazioni dei modelli linguistici impiegati, è stato effettuato un confronto qualitativo tra gli output generati da Gemini Pro e ChatGPT Plus nelle diverse configurazioni di prompting adottate.</p>
 
-            <!-- Am adăugat clasa 'comparison-table' pentru CSS -->
+            <!-- 'comparison-table' CSS -->
             <table class="comparison-table">
                 <thead>
                     <tr>
@@ -135,7 +144,7 @@ Ragioniamo passo dopo passo. Scansiona l’intero CSV fornito per individuare tu
 
     </main>
 
-    <!-- FOOTER MODERN ȘI COMPLET -->
+    <!-- FOOTER -->
     <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-info">
@@ -144,8 +153,11 @@ Ragioniamo passo dopo passo. Scansiona l’intero CSV fornito per individuare tu
                 <p><strong>Anno Accademico:</strong> 2025/2026</p>
                 <p class="team-footer">
                     <strong>Gruppo di Progetto:</strong><br>
-                    Michela Di Campli, Alexia Dinescu, Sofia Mazzetti, Elena Paniccià
+                    Michela Di Campli, Alexia Dinescu, Sofia Mazzetti, Elena Paniccià<br>
+                    <a href="https://github.com/Alexia038/bologna-poi" target="_blank" class="text-link">Repository GitHub</a>
                 </p>
+                <p><strong>Report Overleaf:</strong></p>
+                <a href="https://it.overleaf.com/read/wbzwbjfmfwtc#99bb37" target="_blank" class="text-link">Knowledge Graph dei Punti di Interesse Urbani di Bologna</a>
             </div>
             <div class="footer-links">
                 <h3>Esplora il Progetto</h3>
@@ -154,7 +166,8 @@ Ragioniamo passo dopo passo. Scansiona l’intero CSV fornito per individuare tu
                     <li><a href="topic.html">Argomento del Progetto</a></li>
                     <li><a href="methodology.html">Metodologia</a></li>
                     <li><a href="ontology.html">Estensione Ontologica</a></li>
-                    <li><a href="sparql.html">Query SPARQL</a></li>
+                    <li><a href="sparql-poi.html">SPARQL Query POI-AP_IT</a></li>
+                    <li><a href="sparql-bologna.html">SPARQL Query Bologna</a></li>
                     <li><a href="llm.html">Esperimenti LLM</a></li>
                     <li><a href="rdf.html">Triple RDF</a></li>
                     <li><a href="results.html">Risultati e Confronto</a></li>
@@ -167,23 +180,45 @@ Ragioniamo passo dopo passo. Scansiona l’intero CSV fornito per individuare tu
         </div>
     </footer>
     
-    <!-- SCRIPT PENTRU EFECTUL DE ÎNTRERUPĂTOR (TOGGLE) -->
+    <!-- SCRIPT TOGGLE) -->
     <script>
-        // 2. Meniul Inteligent (Smart Dropdown)
+        // 2. Smart Dropdown)
         const dropdowns = document.querySelectorAll('.dropdown');
         dropdowns.forEach(dropdown => {
             dropdown.addEventListener('mouseenter', () => {
                 const content = dropdown.querySelector('.dropdown-content');
                 
-                // Obținem coordonatele butonului pe ecran
+                // Get the coordinates of the button on the screen
                 const rect = dropdown.getBoundingClientRect();
                 
-                // Verificăm cât spațiu (în pixeli) avem de la buton până la marginea de jos a ecranului.
-                // 150px este înălțimea aproximativă a listei tale derulante.
+                //  Check how much space (in pixels) we have from the button to the bottom edge of the screen.
+                // 150px is the approximate height of your dropdown list.
                 if (window.innerHeight - rect.bottom < 150) {
-                    content.classList.add('drop-up'); // Nu e loc jos -> Deschide în SUS
+                    content.classList.add('drop-up'); // No room below -> Open UPWARDS
                 } else {
-                    content.classList.remove('drop-up'); // Este loc jos -> Deschide normal în JOS
+                    content.classList.remove('drop-up'); // There is room below -> Open normally downwards
+                }
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // Get the URL of the current page
+            const currentUrl = window.location.href;
+            
+            // Select all navigation links
+            const navLinks = document.querySelectorAll('.navigation-bar a');
+            
+            navLinks.forEach(link => {
+                // If the link address matches the current page address
+                if (link.href === currentUrl) {
+                    link.classList.add('active'); // Highlight the button
+                    
+                    // If the link is in the dropdown menu (e.g., SPARQL), also highlight the parent button ("Technical Details")
+                    const dropdownParent = link.closest('.dropdown');
+                    if (dropdownParent) {
+                        const dropbtn = dropdownParent.querySelector('.dropbtn');
+                        if (dropbtn) dropbtn.classList.add('active');
+                    }
                 }
             });
         });
